@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: hsl(25 15% 10%);
+  --color-accent: hsl(28 85% 48%);
+  --color-accent-hover: hsl(28 90% 40%);
+  --color-bg-light: hsl(38 25% 96%);
+  --color-bg-tint: hsl(35 20% 92%);
+  --color-text-main: hsl(25 12% 15%);
+  --color-text-muted: hsl(25 8% 45%);
+  --color-border-subtle: hsl(30 15% 85%);
+  --color-dark-surface: hsl(25 18% 14%);
+  
+  --font-display: 'Jost', sans-serif;
+  --font-body: 'Libre Franklin', sans-serif;
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    background-color: hsl(38 25% 96%);
+    color: hsl(25 12% 15%);
+  }
+
+  @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
+  @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
+  @media (max-width: 1024px) { html { font-size: 1.5625vw; } }
+  @media (max-width: 640px)  { html { font-size: 4.444444vw; } }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-light);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(25 15% 10%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(28 85% 48%);
+  border-radius: 4px;
+}
+
+/* Focus outline for accessibility */
+:focus-visible {
+  outline: 2px solid hsl(28 85% 48%);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

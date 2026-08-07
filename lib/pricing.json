@@ -1,0 +1,25 @@
+{
+  "currency": "NOK",
+  "basePrices": {
+    "herreklipp": 450,
+    "skjeggtrim": 320,
+    "barber_kompleks": 720,
+    "knivbarbering": 480,
+    "dameklipp": 680,
+    "foilage": 1850,
+    "balayage": 1950,
+    "highlights": 1400,
+    "manikyr": 720
+  },
+  "options": {
+    "locations": [
+      { "id": "solsiden", "label": "Solsiden Studio", "fee": 0 },
+      { "id": "moholt", "label": "Moholt Campus", "fee": 0 }
+    ],
+    "additions": [
+      { "id": "hot_towel", "label": "Гарячий рушник та масаж", "price": 180 },
+      { "id": "lanza_treatment", "label": "Відновлення L'ANZA Keratin", "price": 390 },
+      { "id": "grey_blend", "label": "Камуфляж сивини", "price": 290 }
+    ]
+  }
+}
