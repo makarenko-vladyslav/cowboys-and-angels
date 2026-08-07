@@ -1,11 +1,12 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { useLocale } from "@/lib/i18n";
 
 export default function Header() {
   const { locale, setLocale, t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,15 +16,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { label: t("nav.locations") as string, href: "#locations" },
-    { label: t("nav.services") as string, href: "#services" },
-    { label: t("nav.calculator") as string, href: "#calculator" },
-    { label: t("nav.process") as string, href: "#process" },
-    { label: t("nav.shop") as string, href: "#shop" },
-    { label: t("nav.gallery") as string, href: "#gallery" },
-    { label: t("nav.team") as string, href: "#team" },
-    { label: t("nav.faq") as string, href: "#faq" },
+  const toggleLocale = () => {
+    setLocale(locale === "uk" ? "en" : "uk");
+  };
+
+  const navLinks = [
+    { href: "#concept", label: t("nav.concept") as string },
+    { href: "#services", label: t("nav.services") as string },
+    { href: "#calculator", label: t("nav.calculator") as string },
+    { href: "#craft", label: t("nav.craft") as string },
+    { href: "#portfolio", label: t("nav.portfolio") as string },
+    { href: "#team", label: t("nav.team") as string },
+    { href: "#shop", label: t("nav.shop") as string },
+    { href: "#faq", label: t("nav.faq") as string },
   ];
 
   return (
@@ -31,141 +36,108 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-[hsl(25_15%_10%/0.95)] backdrop-blur-md border-b border-[hsl(28_85%_48%/0.2)] py-3 shadow-lg"
-            : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-5"
+            ? "bg-[hsl(25_20%_8%/0.95)] backdrop-blur-md py-3 shadow-xl border-b border-[hsl(28_85%_52%/0.25)]"
+            : "bg-gradient-to-b from-[hsl(25_20%_7%/0.95)] via-[hsl(25_20%_7%/0.6)] to-transparent py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="group flex items-center gap-3 text-white">
-            <div className="w-9 h-9 rounded-md bg-[hsl(28_85%_48%)] flex items-center justify-center font-bold text-lg text-white shadow-md">
-              C&A
-            </div>
+          <a href="#" className="flex items-center gap-3 group">
+            <span className="w-10 h-10 rounded bg-[hsl(28_85%_52%)] text-[hsl(25_20%_8%)] font-display font-extrabold text-2xl flex items-center justify-center transition-transform group-hover:scale-105">
+              CA
+            </span>
             <div className="flex flex-col">
-              <span className="font-display font-extrabold tracking-wider text-lg leading-none uppercase">
-                COWBOYS <span className="text-[hsl(28_85%_48%)]">&</span> ANGELS
+              <span className="font-display font-bold text-2xl sm:text-3xl text-white tracking-wider leading-none">
+                COWBOYS & ANGELS
               </span>
-              <span className="text-[0.65rem] tracking-widest text-white/70 uppercase">
-                Frisørsalong & Barbershop
+              <span className="text-[10px] uppercase tracking-widest text-[hsl(28_85%_52%)] font-bold">
+                BARBERSHOP & FOILAGE STUDIO · TRONDHEIM
               </span>
             </div>
           </a>
 
-          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6">
-            {navItems.map((item) => (
+            {navLinks.map((link) => (
               <a
-                key={item.href}
-                href={item.href}
-                className="text-xs font-semibold tracking-wider uppercase text-white/80 hover:text-[hsl(28_85%_48%)] transition-colors"
+                key={link.href}
+                href={link.href}
+                className="text-xs uppercase font-bold text-white/80 hover:text-[hsl(28_85%_52%)] transition-colors tracking-wider"
               >
-                {item.label}
+                {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Actions */}
           <div className="hidden sm:flex items-center gap-4">
-            {/* Language Switcher */}
-            <div className="flex items-center rounded-full bg-white/10 p-1 border border-white/15 text-xs text-white">
-              <button
-                onClick={() => setLocale("uk")}
-                className={`px-2.5 py-0.5 rounded-full font-bold transition-all ${
-                  locale === "uk" ? "bg-[hsl(28_85%_48%)] text-white" : "hover:text-white/80 text-white/60"
-                }`}
-              >
-                UA
-              </button>
-              <button
-                onClick={() => setLocale("en")}
-                className={`px-2.5 py-0.5 rounded-full font-bold transition-all ${
-                  locale === "en" ? "bg-[hsl(28_85%_48%)] text-white" : "hover:text-white/80 text-white/60"
-                }`}
-              >
-                EN
-              </button>
-            </div>
-
-            {/* Call button */}
-            <a
-              href="tel:+4773000000"
-              className="text-xs font-bold text-white hover:text-[hsl(28_85%_48%)] transition-colors flex items-center gap-1.5"
+            <button
+              onClick={toggleLocale}
+              className="text-xs font-bold px-2.5 py-1 rounded border border-white/20 text-white/90 hover:border-[hsl(28_85%_52%)] hover:text-[hsl(28_85%_52%)] transition-all uppercase"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              Solsiden & Moholt
+              {locale === "uk" ? "EN" : "UA"}
+            </button>
+
+            <a
+              href="tel:+4773931000"
+              className="text-xs font-bold text-white hover:text-[hsl(28_85%_52%)] transition-colors hidden md:block tabular-nums"
+            >
+              {t("nav.phone") as string}
             </a>
 
-            {/* CTA */}
             <a
-              href="#booking"
-              className="px-4 py-2 rounded-md bg-[hsl(28_85%_48%)] hover:bg-[hsl(28_90%_40%)] text-white font-bold text-xs uppercase tracking-wider transition-all transform hover:scale-[1.02] shadow-md"
+              href="#contact"
+              className="bg-[hsl(28_85%_52%)] hover:bg-[hsl(24_90%_45%)] text-[hsl(25_20%_8%)] font-display font-extrabold text-sm uppercase px-5 py-2.5 rounded transition-all shadow-md tracking-wider"
             >
-              {t("common.quickBook") as string}
+              {t("nav.bookNow") as string}
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-white p-2 focus:outline-none"
-            aria-label="Toggle Navigation Menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            className="lg:hidden px-3 py-1.5 border border-white/20 rounded text-xs font-bold uppercase tracking-wider text-white hover:text-[hsl(28_85%_52%)] hover:border-[hsl(28_85%_52%)] focus:outline-none"
           >
-            <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`h-0.5 w-full bg-white transition-transform ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-              <span className={`h-0.5 w-full bg-white transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`}></span>
-              <span className={`h-0.5 w-full bg-white transition-transform ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
-            </div>
+            {menuOpen ? "ЗАКРИТИ" : "МЕНЮ"}
           </button>
         </div>
       </header>
 
-      {/* Full-screen Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[hsl(25_15%_10%)] flex flex-col justify-between p-8 pt-24 text-white lg:hidden">
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-xs uppercase tracking-widest text-[hsl(28_85%_48%)]">Меню навігації</span>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setLocale("uk")}
-                  className={`px-3 py-1 rounded text-xs font-bold ${locale === "uk" ? "bg-[hsl(28_85%_48%)] text-white" : "bg-white/10"}`}
-                >
-                  UA
-                </button>
-                <button
-                  onClick={() => setLocale("en")}
-                  className={`px-3 py-1 rounded text-xs font-bold ${locale === "en" ? "bg-[hsl(28_85%_48%)] text-white" : "bg-white/10"}`}
-                >
-                  EN
-                </button>
-              </div>
-            </div>
-
-            <nav className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-display font-bold text-2xl uppercase tracking-wide hover:text-[hsl(28_85%_48%)] transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-[hsl(25_20%_7%)] text-white flex flex-col justify-between p-8 pt-24 lg:hidden">
+          <div className="flex flex-col gap-5">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="font-display font-bold text-3xl uppercase text-white/90 hover:text-[hsl(28_85%_52%)] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
           <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-white/60 uppercase font-bold tracking-wider">Мова / Language</span>
+              <button
+                onClick={toggleLocale}
+                className="text-xs font-bold px-3 py-1 bg-white/10 rounded text-[hsl(28_85%_52%)] uppercase"
+              >
+                {locale === "uk" ? "Switch to English" : "Перейти на Українську"}
+              </button>
+            </div>
             <a
-              href="#booking"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-3 text-center bg-[hsl(28_85%_48%)] font-bold text-sm uppercase tracking-wider rounded text-white"
+              href="tel:+4773931000"
+              className="text-center font-display font-bold text-xl text-[hsl(28_85%_52%)] tabular-nums"
             >
-              {t("common.bookNow") as string}
+              +47 73 93 10 00
             </a>
-            <p className="text-xs text-white/60 text-center">
-              Тронгейм · Solsiden & Moholt · Est. 2018
-            </p>
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="w-full text-center bg-[hsl(28_85%_52%)] text-[hsl(25_20%_8%)] font-display font-extrabold text-lg uppercase py-3 rounded tracking-wider"
+            >
+              {t("nav.bookNow") as string}
+            </a>
           </div>
         </div>
       )}

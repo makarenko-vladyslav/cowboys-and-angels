@@ -1,58 +1,59 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
-import Locations from "@/components/Locations";
-import Services from "@/components/Services";
-import PriceCalculator from "@/components/PriceCalculator";
-import WhyUs from "@/components/WhyUs";
-import RitualProcess from "@/components/RitualProcess";
-import ShopShowcase from "@/components/ShopShowcase";
-import Gallery from "@/components/Gallery";
-import VideoSection from "@/components/VideoSection";
-import Team from "@/components/Team";
-import Testimonials from "@/components/Testimonials";
-import Faq from "@/components/Faq";
-import BookingForm from "@/components/BookingForm";
+import ConceptSection from "@/components/ConceptSection";
+import ServicesSection from "@/components/ServicesSection";
+import CalculatorSection from "@/components/CalculatorSection";
+import CraftsmanshipSection from "@/components/CraftsmanshipSection";
+import BeforeAfterSection from "@/components/BeforeAfterSection";
+import GallerySection from "@/components/GallerySection";
+import TeamSection from "@/components/TeamSection";
+import VideoShowcase from "@/components/VideoShowcase";
+import ShopSection from "@/components/ShopSection";
+import FaqSection from "@/components/FaqSection";
+import BookingContactSection from "@/components/BookingContactSection";
 import Footer from "@/components/Footer";
-import { MarqueeTicker, LabeledHairline, StatementBand } from "@/components/Interstitials";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import {
+  TickerInterstitial,
+  WatermarkStatementInterstitial,
+  LabeledHairlineInterstitial,
+  PressRatingInterstitial,
+} from "@/components/Interstitials";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen">
+    <div className="min-h-screen bg-[hsl(35_25%_96%)] text-[hsl(25_20%_12%)] selection:bg-[hsl(28_85%_52%)] selection:text-[hsl(25_20%_8%)]">
       <Header />
       <main>
-        <Hero />
-        <SocialProof />
+        <Reveal><Hero /></Reveal>
+        <Reveal><SocialProof /></Reveal>
         
-        <MarqueeTicker />
+        <TickerInterstitial />
         
-        <Locations />
+        <Reveal><ConceptSection /></Reveal>
         
-        <LabeledHairline label="TRONDHEIM · SOLSIDEN & MOHOLT · EST 2018" />
+        <WatermarkStatementInterstitial />
         
-        <Services />
-        <PriceCalculator />
+        <Reveal><ServicesSection /></Reveal>
+        <Reveal><CalculatorSection /></Reveal>
         
-        <StatementBand
-          text="ВІЗИТ У COWBOYS & ANGELS — ЦЕ НЕ ПРОСТО СТРИЖКА, ЦЕ ЧІТКИЙ РИТУАЛ ТА ПОВАГА ДО ВАШОГО ЧАСУ"
-          sub="SOLSIDEN STUDIO & MOHOLT CAMPUS"
-        />
+        <LabeledHairlineInterstitial label="СТАНДАРТИ ОБСЛУГОВУВАННЯ МЕРЕЖІ COWBOYS AND ANGELS" />
         
-        <WhyUs />
-        <RitualProcess />
+        <Reveal><CraftsmanshipSection /></Reveal>
+        <Reveal><BeforeAfterSection /></Reveal>
+        <Reveal><GallerySection /></Reveal>
         
-        <MarqueeTicker text="L'ANZA KERATIN · KEUNE CARE · BEARDBURYS · TRADITIONAL SHAVE · FOILAGE · BALAYAGE · " />
+        <PressRatingInterstitial />
         
-        <ShopShowcase />
-        <Gallery />
-        <VideoSection />
-        <Team />
+        <Reveal><TeamSection /></Reveal>
+        <Reveal><VideoShowcase /></Reveal>
+        <Reveal><ShopSection /></Reveal>
+        <Reveal><FaqSection /></Reveal>
         
-        <LabeledHairline label="ОЦІНКА 4.6 НА GOOGLE MAPS · ПОНАД 100 РЕАЛЬНИХ ВІДГУКІВ" />
+        <LabeledHairlineInterstitial label="ОНЛАЙН-БРОНЮВАННЯ ТА ЛОКАЦІЇ" />
         
-        <Testimonials />
-        <Faq />
-        <BookingForm />
+        <Reveal><BookingContactSection /></Reveal>
       </main>
       <Footer />
     </div>

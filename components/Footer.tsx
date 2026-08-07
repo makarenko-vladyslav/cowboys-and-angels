@@ -1,114 +1,122 @@
 "use client";
+
 import { useLocale } from "@/lib/i18n";
 
 export default function Footer() {
   const { t } = useLocale();
 
   return (
-    <footer className="bg-[hsl(25_15%_10%)] text-white border-t border-white/10 pt-20 pb-12 relative overflow-hidden">
+    <footer className="bg-[hsl(25_20%_6%)] text-white border-t border-[hsl(28_85%_52%/0.25)] pt-20 pb-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
-          {/* Brand Col */}
-          <div className="md:col-span-4 space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-md bg-[hsl(28_85%_48%)] flex items-center justify-center font-bold text-xl text-white">
-                C&A
-              </div>
-              <span className="font-display font-extrabold tracking-wider text-2xl uppercase">
-                COWBOYS <span className="text-[hsl(28_85%_48%)]">&</span> ANGELS
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-10 h-10 rounded bg-[hsl(28_85%_52%)] text-[hsl(25_20%_8%)] font-display font-extrabold text-2xl flex items-center justify-center">
+                CA
+              </span>
+              <span className="font-display font-bold text-2xl text-white tracking-wider">
+                COWBOYS & ANGELS
               </span>
             </div>
-
-            <p className="text-xs text-white/70 max-w-sm leading-relaxed">
+            <p className="text-xs text-white/70 leading-relaxed mb-4">
               {t("footer.tagline") as string}
             </p>
-
-            <div className="space-y-1 text-xs text-white/80">
-              <div>Тел: <a href="tel:+4773000000" className="text-[hsl(28_85%_48%)] font-bold hover:underline">+47 73 00 00 00</a></div>
-              <div>Email: <a href="mailto:post@cowboysandangels.no" className="hover:underline">post@cowboysandangels.no</a></div>
+            <div className="text-xs text-[hsl(28_85%_52%)] font-bold uppercase tracking-wider">
+              Trondheim: Moholt & Solsiden
             </div>
           </div>
 
-          {/* Solsiden Location */}
-          <div className="md:col-span-3 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[hsl(28_85%_48%)] block">
-              Solsiden Studio
-            </span>
-            <p className="text-xs text-white/80 leading-relaxed">
-              {t("footer.solsidenAddr") as string}
-            </p>
-            <p className="text-xs text-white/60">
-              Пн-Пт: 09:00 - 19:00<br />
-              Сб: 09:00 - 17:00
+          <div>
+            <h3 className="font-display font-bold text-xl uppercase text-white mb-4 border-b border-white/10 pb-2">
+              {t("footer.hoursTitle") as string}
+            </h3>
+            <p className="text-xs text-white/70 whitespace-pre-line leading-relaxed font-mono">
+              {t("footer.hoursText") as string}
             </p>
           </div>
 
-          {/* Moholt Location */}
-          <div className="md:col-span-3 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[hsl(28_85%_48%)] block">
-              Moholt Campus
-            </span>
-            <p className="text-xs text-white/80 leading-relaxed">
-              {t("footer.moholtAddr") as string}
-            </p>
-            <p className="text-xs text-white/60">
-              Пн-Пт: 09:00 - 18:00<br />
-              Сб: 09:00 - 16:00
-            </p>
+          <div>
+            <h3 className="font-display font-bold text-xl uppercase text-white mb-4 border-b border-white/10 pb-2">
+              {t("footer.navTitle") as string}
+            </h3>
+            <ul className="space-y-2 text-xs text-white/70 uppercase font-semibold">
+              <li>
+                <a href="#concept" className="hover:text-[hsl(28_85%_52%)] transition-colors">
+                  Концепція мережі
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-[hsl(28_85%_52%)] transition-colors">
+                  Послуги та фіксований прайс
+                </a>
+              </li>
+              <li>
+                <a href="#calculator" className="hover:text-[hsl(28_85%_52%)] transition-colors">
+                  Калькулятор візиту
+                </a>
+              </li>
+              <li>
+                <a href="#portfolio" className="hover:text-[hsl(28_85%_52%)] transition-colors">
+                  Галерея робіт
+                </a>
+              </li>
+              <li>
+                <a href="#shop" className="hover:text-[hsl(28_85%_52%)] transition-colors">
+                  Шоурум косметики
+                </a>
+              </li>
+            </ul>
           </div>
 
-          {/* Social Text Links */}
-          <div className="md:col-span-2 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-[hsl(28_85%_48%)] block">
-              Соціальні мережі
-            </span>
-            <div className="flex flex-col gap-2 text-xs font-bold text-white/80">
-              <a
-                href="https://www.instagram.com/cowboysandangels_moholt/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[hsl(28_85%_48%)] uppercase tracking-wider"
-              >
-                Instagram
-              </a>
+          <div>
+            <h3 className="font-display font-bold text-xl uppercase text-white mb-4 border-b border-white/10 pb-2">
+              {t("footer.socialTitle") as string}
+            </h3>
+            <div className="flex flex-col gap-3 text-xs text-white/70 uppercase font-bold">
               <a
                 href="https://www.facebook.com/cowboysandangelsmoholt"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[hsl(28_85%_48%)] uppercase tracking-wider"
+                rel="noreferrer"
+                className="hover:text-[hsl(28_85%_52%)] transition-colors"
               >
-                Facebook
+                Facebook — Moholt
               </a>
               <a
-                href="#locations"
-                className="hover:text-[hsl(28_85%_48%)] uppercase tracking-wider"
+                href="https://www.instagram.com/cowboysandangels_moholt/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[hsl(28_85%_52%)] transition-colors"
               >
-                Google Maps
+                Instagram — @cowboysandangels_moholt
               </a>
+              <div className="pt-2 border-t border-white/10 text-[11px] font-normal text-white/50 lowercase">
+                адреса: Herman Krags vei 43 / TMV-kaia 23<br />
+                тел: +47 73 93 10 00
+              </div>
             </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-white/50 gap-4">
+          <div>{t("footer.copy") as string}</div>
+          <div>
+            Розроблено{" "}
+            <a
+              href="https://makarich.framer.website"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[hsl(28_85%_52%)] hover:underline font-bold"
+            >
+              Студія Тест
+            </a>
           </div>
         </div>
 
         {/* Giant Bleeding Wordmark */}
-        <div className="py-6 border-y border-white/10 text-center select-none overflow-hidden -mx-4 sm:-mx-6">
-          <span className="font-display font-extrabold text-6xl sm:text-9xl md:text-[11rem] uppercase tracking-tighter text-white/5 whitespace-nowrap block leading-none">
+        <div className="mt-12 text-center overflow-hidden pointer-events-none opacity-10 select-none">
+          <span className="font-display font-extrabold text-[15vw] leading-none text-white uppercase tracking-tighter whitespace-nowrap block">
             COWBOYS & ANGELS
           </span>
-        </div>
-
-        {/* Legal & Developer Credit */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
-          <div>{t("footer.copyright") as string}</div>
-          <div>
-            <a
-              href="https://makarich.framer.website"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/70 hover:text-[hsl(28_85%_48%)] transition-colors underline"
-            >
-              {t("footer.devCredit") as string}
-            </a>
-          </div>
         </div>
       </div>
     </footer>

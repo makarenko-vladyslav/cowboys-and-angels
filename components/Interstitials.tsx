@@ -1,49 +1,70 @@
 "use client";
 
-export function MarqueeTicker({ text }: { text?: string }) {
-  const contentText = text || "SOLSIDEN STUDIO · MOHOLT CAMPUS · TRADITIONAL BARBERING · FOILAGE COLORING · HERREKLIPP · SKJEGGTRIM · L'ANZA KERATIN · KEUNE CARE · ";
+export function TickerInterstitial() {
   return (
-    <div className="py-4 bg-[hsl(28_85%_48%)] text-white overflow-hidden whitespace-nowrap select-none border-y border-white/10">
-      <div className="inline-block animate-[marquee_25s_linear_infinite] font-display text-xs sm:text-sm font-extrabold tracking-[0.25em] uppercase">
-        <span className="mx-4">{contentText}</span>
-        <span className="mx-4">{contentText}</span>
-        <span className="mx-4">{contentText}</span>
-        <span className="mx-4">{contentText}</span>
+    <div className="bg-[hsl(28_85%_52%)] text-[hsl(25_20%_8%)] py-3 overflow-hidden border-y border-[hsl(28_85%_45%)] select-none">
+      <div className="animate-marquee whitespace-nowrap font-display font-extrabold text-sm uppercase tracking-[0.2em] flex items-center gap-8">
+        <span>MOHOLT CAMPUS</span>
+        <span>·</span>
+        <span>SOLSIDEN WATERFRONT</span>
+        <span>·</span>
+        <span>HERREKLIPP & SKJEGGTRIM</span>
+        <span>·</span>
+        <span>FOILAGE & BALAYAGE</span>
+        <span>·</span>
+        <span>L'ANZA HEALING COLORCARE</span>
+        <span>·</span>
+        <span>KEUNE HAIRCOSMETICS</span>
+        <span>·</span>
+        <span>MOHOLT CAMPUS</span>
+        <span>·</span>
+        <span>SOLSIDEN WATERFRONT</span>
+        <span>·</span>
+        <span>HERREKLIPP & SKJEGGTRIM</span>
+        <span>·</span>
+        <span>FOILAGE & BALAYAGE</span>
+        <span>·</span>
       </div>
     </div>
   );
 }
 
-export function LabeledHairline({ label }: { label: string }) {
+export function WatermarkStatementInterstitial() {
   return (
-    <div className="py-8 bg-[hsl(25_15%_10%)] text-white/50 flex items-center justify-center gap-6 px-4">
-      <div className="h-px bg-white/10 flex-1 max-w-xs"></div>
-      <span className="text-[0.65rem] font-bold tracking-[0.3em] uppercase text-[hsl(28_85%_48%)]">
-        {label}
-      </span>
-      <div className="h-px bg-white/10 flex-1 max-w-xs"></div>
-    </div>
-  );
-}
-
-export function StatementBand({ text, sub }: { text: string; sub?: string }) {
-  return (
-    <section className="py-16 bg-[hsl(25_18%_14%)] text-white border-y border-white/10 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-4 relative z-10">
-        <p className="font-display text-xl sm:text-3xl font-extrabold uppercase leading-snug tracking-tight text-[hsl(38_25%_96%)]">
-          {text}
-        </p>
-        {sub && (
-          <p className="text-xs sm:text-sm text-[hsl(28_85%_48%)] font-semibold tracking-wider uppercase">
-            {sub}
-          </p>
-        )}
-      </div>
-      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden aria-hidden z-0 flex items-center justify-center opacity-5">
-        <span className="font-display font-extrabold text-9xl uppercase tracking-tighter text-white whitespace-nowrap">
-          COWBOYS & ANGELS
+    <div className="py-12 bg-[hsl(25_20%_8%)] text-white overflow-hidden relative border-t border-b border-white/10 select-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+        <span className="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl uppercase tracking-wider text-white/90">
+          ТОЧНІСТЬ ФЕЙДУ · М'ЯКІСТЬ ВІДБЛИСКУ · 100% ВІДПОВІДАЛЬНІСТЬ
         </span>
       </div>
-    </section>
+    </div>
+  );
+}
+
+export function LabeledHairlineInterstitial({ label }: { label: string }) {
+  return (
+    <div className="py-8 bg-[hsl(35_25%_96%)] flex items-center justify-center px-4">
+      <div className="w-full max-w-7xl flex items-center gap-4">
+        <div className="flex-1 h-px bg-[hsl(25_15%_85%)]" />
+        <span className="text-[10px] uppercase font-extrabold tracking-[0.3em] text-[hsl(28_85%_52%)] whitespace-nowrap">
+          {label}
+        </span>
+        <div className="flex-1 h-px bg-[hsl(25_15%_85%)]" />
+      </div>
+    </div>
+  );
+}
+
+export function PressRatingInterstitial() {
+  return (
+    <div className="py-6 bg-[hsl(25_20%_7%)] text-white border-t border-b border-[hsl(28_85%_52%/0.3)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-bold uppercase tracking-widest text-white/70">
+        <div>GOOGLE MAPS: 4.6 / 5.0 (100+ ВІДГУКІВ)</div>
+        <div className="text-[hsl(28_85%_52%)] hidden md:block">·</div>
+        <div>ОФІЦІЙНИЙ ПАРТНЕР L'ANZA & KEUNE У ТРОНГЕЙМІ</div>
+        <div className="text-[hsl(28_85%_52%)] hidden md:block">·</div>
+        <div>MOHOLT & SOLSIDEN</div>
+      </div>
+    </div>
   );
 }
