@@ -1,25 +1,16 @@
 {
   "currency": "NOK",
   "basePrices": {
-    "herreklipp": 450,
-    "skjeggtrim": 350,
-    "combo_barber": 750,
-    "knivbarbering": 520,
+    "beard": 450,
+    "menCut": 650,
+    "womenCut": 890,
     "foilage": 1850,
-    "balayage": 1950,
-    "dameklipp": 790,
-    "highlights": 1400,
-    "manikyr": 720
+    "royalShave": 690,
+    "fullPackage": 1100
   },
-  "lengthMultipliers": {
-    "short": 1.0,
-    "medium": 1.15,
-    "long": 1.35
-  },
-  "additionalTreatments": {
-    "lanza_treatment": 380,
-    "hot_towel_spa": 220,
-    "eyebrow_styling": 250,
-    "beard_color": 300
+  "addons": {
+    "spaCare": 350,
+    "grayCamouflage": 320,
+    "toning": 450
   }
 }

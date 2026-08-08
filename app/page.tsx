@@ -1,61 +1,72 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import SocialProof from "@/components/SocialProof";
-import ConceptSection from "@/components/ConceptSection";
-import ServicesSection from "@/components/ServicesSection";
-import CalculatorSection from "@/components/CalculatorSection";
-import CraftsmanshipSection from "@/components/CraftsmanshipSection";
-import BeforeAfterSection from "@/components/BeforeAfterSection";
-import GallerySection from "@/components/GallerySection";
+import TickerStrip from "@/components/TickerStrip";
+import DualConcept from "@/components/DualConcept";
+import ServicesMenu from "@/components/ServicesMenu";
+import PriceCalculator from "@/components/PriceCalculator";
+import CraftShowcase from "@/components/CraftShowcase";
+import Gallery from "@/components/Gallery";
+import ProductsShop from "@/components/ProductsShop";
 import TeamSection from "@/components/TeamSection";
-import VideoShowcase from "@/components/VideoShowcase";
-import ShopSection from "@/components/ShopSection";
-import FaqSection from "@/components/FaqSection";
-import BookingContactSection from "@/components/BookingContactSection";
+import FAQSection from "@/components/FAQSection";
+import BookingForm from "@/components/BookingForm";
+import LocationsMap from "@/components/LocationsMap";
 import Footer from "@/components/Footer";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
-import {
-  TickerInterstitial,
-  WatermarkStatementInterstitial,
-  LabeledHairlineInterstitial,
-  PressRatingInterstitial,
-} from "@/components/Interstitials";
+import { LabeledHairline, StatementBand, RatingStrip } from "@/components/Interstitials";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[hsl(35_25%_96%)] text-[hsl(25_20%_12%)] selection:bg-[hsl(28_85%_52%)] selection:text-[hsl(25_20%_8%)]">
+    <>
       <Header />
       <main>
-        <Reveal><Hero /></Reveal>
-        <Reveal><SocialProof /></Reveal>
+        {/* Section 1: Hero */}
+        <Hero />
         
-        <TickerInterstitial />
-        
-        <Reveal><ConceptSection /></Reveal>
-        
-        <WatermarkStatementInterstitial />
-        
-        <Reveal><ServicesSection /></Reveal>
-        <Reveal><CalculatorSection /></Reveal>
-        
-        <LabeledHairlineInterstitial label="СТАНДАРТИ ОБСЛУГОВУВАННЯ МЕРЕЖІ COWBOYS AND ANGELS" />
-        
-        <Reveal><CraftsmanshipSection /></Reveal>
-        <Reveal><BeforeAfterSection /></Reveal>
-        <Reveal><GallerySection /></Reveal>
-        
-        <PressRatingInterstitial />
-        
-        <Reveal><TeamSection /></Reveal>
-        <Reveal><VideoShowcase /></Reveal>
-        <Reveal><ShopSection /></Reveal>
-        <Reveal><FaqSection /></Reveal>
-        
-        <LabeledHairlineInterstitial label="ОНЛАЙН-БРОНЮВАННЯ ТА ЛОКАЦІЇ" />
-        
-        <Reveal><BookingContactSection /></Reveal>
+        {/* Interstitial 1: Ticker Strip */}
+        <TickerStrip />
+
+        {/* Section 2: Dual Concept (Dark) */}
+        <DualConcept />
+
+        {/* Interstitial 2: Labeled Hairline */}
+        <LabeledHairline label="TRONDHEIM BARBERSHOP & FRISØRSALONG · SOLSIDEN & MOHOLT" />
+
+        {/* Section 3: Services Menu (Primary Light) */}
+        <ServicesMenu />
+
+        {/* Interstitial 3: Statement Band */}
+        <StatementBand statement="INGEN REGISTRERING · DIREKTE TIMEBESTILLING PÅ 30 SEKUNDER" />
+
+        {/* Section 4: Price Calculator (Dark) */}
+        <PriceCalculator />
+
+        {/* Section 5: Craft Showcase (Primary Light) */}
+        <CraftShowcase />
+
+        {/* Interstitial 4: Rating Strip */}
+        <RatingStrip ratingText="GOOGLE VURDERING · BASERT PÅ 420+ ANMELDELSER FRA TRONDHEIM" />
+
+        {/* Section 6: Gallery (Dark) */}
+        <Gallery />
+
+        {/* Section 7: Products Shop (Primary Light) */}
+        <ProductsShop />
+
+        {/* Section 8: Team Section (Dark) */}
+        <TeamSection />
+
+        {/* Section 9: FAQ Section (Primary Light) */}
+        <FAQSection />
+
+        {/* Section 10: Booking Form (Dark) */}
+        <BookingForm />
+
+        {/* Section 11: Locations Map (Primary Light) */}
+        <LocationsMap />
       </main>
+      
+      {/* Footer (Dark) */}
       <Footer />
-    </div>
+    </>
   );
 }

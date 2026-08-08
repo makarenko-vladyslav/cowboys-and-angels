@@ -1,306 +1,418 @@
 {
-  "defaultLocale": "uk",
+  "defaultLocale": "no",
   "locales": {
-    "uk": {
+    "no": {
       "meta": {
-        "title": "Cowboys and Angels — Салон-барбершоп у Тронгеймі",
-        "description": "Онлайн-запис на чоловічі стрижки, оформлення бороди з гарячим рушником 65°C та складне жіноче фарбування Foilage. Локації Moholt та Solsiden."
+        "title": "Cowboys and Angels | Frisørsalong og Barbershop Trondheim",
+        "description": "Spesialister på Foilage, herreklipp og tradisjonelt hot towel shave på Moholt og Solsiden i Trondheim."
       },
       "nav": {
-        "concept": "Концепція",
-        "services": "Послуги та Прайс",
-        "calculator": "Калькулятор",
-        "craft": "Стандарти",
-        "portfolio": "Портфоліо",
-        "team": "Команда",
-        "shop": "Косметика",
-        "faq": "Часті запитання",
-        "contact": "Записатися",
-        "phone": "+47 73 93 10 00",
-        "bookNow": "Забронювати візит"
+        "concept": "Konsept",
+        "services": "Tjenester & Priser",
+        "calculator": "Priskalkulator",
+        "craft": "Håndverk",
+        "gallery": "Galleri",
+        "shop": "Nettbutikk",
+        "team": "Vårt Team",
+        "faq": "Spørsmål & Svar",
+        "locations": "Avdelinger",
+        "bookCta": "Bestill Time"
       },
       "hero": {
-        "kicker": "Засновано 2018 року · Тронгейм, Норвегія",
-        "h1First": "ТРАДИЦІЙНИЙ БАРБЕРІНГ ТА СУЧАСНЕ ФАРБУВАННЯ",
-        "h1Italic": "Foilage",
-        "h1Last": "В ОДНІЙ МЕРЕЖІ",
-        "subtitle": "Миттєвий онлайн-запис без реєстрації. Дві студії у Тронгеймі: студентський кампус Moholt та набережна Solsiden.",
-        "ctaPrimary": "Забронювати час онлайн",
-        "ctaSecondary": "Розрахувати вартість",
-        "badgeText": "4.6/5 Google Maps · Понад 100 підтверджених відгуків",
-        "moholtAddr": "Moholt: Herman Krags vei 43",
-        "solsidenAddr": "Solsiden: TMV-kaia 23",
-        "hours": "Пн-Сб: 09:00 - 18:00"
+        "kicker": "Est. 2018 — Trondheim, Solsiden & Moholt",
+        "h1First": "Klassisk Håndverk.",
+        "h1Second": "Rå Eleganse.",
+        "subtitle": "Tradisjonell knivbarbering på Solsiden og avanserte fargeteknikker som Foilage på Moholt. Bestill time direkte på under 30 sekunder uten innlogging.",
+        "bookNow": "Bestill Time Nå",
+        "viewPrices": "Se Prisliste →",
+        "phoneFast": "Ring direkte: +47 73 93 11 00",
+        "ratingText": "4.7 / 5.0 · 420+ Google anmeldelser",
+        "solsidenBrief": "SOLSIDEN BARBERSHOP: Spesialisert på razor fade, konturer & hot towel shave",
+        "moholtBrief": "MOHOLT SALONG: Eksperter på Foilage, balayage, dameklipp & hodebunns-SPA"
       },
-      "socialProof": {
-        "kicker": "Цифри та факти мережі у Тронгеймі",
-        "stat1Value": "2 студії",
-        "stat1Label": "Moholt та Solsiden у Тронгеймі",
-        "stat2Value": "від 450 NOK",
-        "stat2Label": "Фіксована стартова ціна на стрижку",
-        "stat3Value": "4.6 / 5.0",
-        "stat3Label": "Оцінка на базі 100+ відгуків",
-        "stat4Value": "0 хвилин",
-        "stat4Label": "Обслуговування точно у заброньований час"
-      },
+      "ticker": [
+        "Solsiden Barbershop",
+        "Moholt Frisør & Barber",
+        "Spesialister på Foilage",
+        "Royal Hot Towel Shave",
+        "L'Anza & Keune Sertifisert",
+        "Ingen Tvungen Innlogging",
+        "4.7★ Google Vurdering"
+      ],
       "concept": {
-        "kicker": "Подвійна спеціалізація",
-        "title": "ДВА СВІТИ — ОДИН СТАНДАРТ РЕМЕСЛА",
-        "description": "Ми поєднали сувору точність класичного барбершопу із філігранною технікою салонного фарбування. Чоловіча зона працює за канонами розпарювання шкіри гарячим рушником, а студія колористики застосовує суміші L'ANZA та KEUNE.",
-        "barberTitle": "Чоловічий барбершоп",
-        "barberDesc": "Традиційне гоління небезпечною бритвою, чіткі контури бороди, лезові фейди та моделювання з розпарюванням обличчя.",
-        "salonTitle": "Студія колористики Foilage",
-        "salonDesc": "Спеціалізовані техніки Foilage та Balayage із плавним розтягуванням кольору та збереженням ліпідного бар'єра волосся.",
-        "shopTitle": "Професійний шоурум",
-        "shopDesc": "Сертифікована косметика L'ANZA, KEUNE та Bearburys із можливістю самовивозу під час візиту."
+        "kicker": "To Spissede Konsepter",
+        "title": "Mellom Tradisjonelt Skjegg og Moderne Mote",
+        "lead": "Vi har fjernet alt unødvendig byråkrati og kompliserte skjemaer. Velg din nærmeste avdeling i Trondheim og opplev presisjon fra erfarne fagfolk.",
+        "solsidenTitle": "Solsiden — Pur Barbershop",
+        "solsidenDesc": "Ligger midt i Trondheims mest pulserende strøk. Dedikert utelukkende til herreklipp, skarpe konturer, skjeggtrim og knivbarbering med varme omslag.",
+        "solsidenFeature1": "Spesialisert på tradisjonell razor fade og skjegg",
+        "solsidenFeature2": "Avslappet atmosfære med signaturdrikke",
+        "moholtTitle": "Moholt — Salong & Barbershop",
+        "moholtDesc": "Vår romslige flaggskip-salong nær NTNU Moholt. Tilbyr både fullskala dame- og herrefrisør, avansert Foilage, Balayage, fargekorrigering og hodebunns-SPA.",
+        "moholtFeature1": "Fagfolk på Foilage & fargeteknikker",
+        "moholtFeature2": "Både herre- og damesalong i adskilte soner"
       },
       "services": {
-        "kicker": "Прайс-лист та послуги",
-        "title": "ПОСЛУГИ ТА ПРОЗОРІ ФІКСОВАНІ ТАРИФИ",
-        "subtitle": "Фіксовані розцінки без прихованих націнок за довжину чи витратні матеріали.",
-        "tabAll": "Усі послуги",
-        "tabMen": "Барбершоп (Чоловіки)",
-        "tabWomen": "Колористика та Стрижки",
-        "tabSpecial": "Догляд та Комплекси",
-        "bookServiceBtn": "Обрати майстра та зарезервувати час"
+        "kicker": "Transparente Priser",
+        "title": "Våre Behandlinger & Priser",
+        "subtitle": "Ingen skjulte gebyrer eller ubehagelige overraskelser i kassen. Alt utføres med L'Anza og Keune kvalitetsprodukter.",
+        "footnote": "* Alle farge- og kjemiske behandlinger inkluderer fargebevarende vask med L'Anza og hodebunnsmassasje.",
+        "tabs": {
+          "men": "Herre & Skjegg",
+          "women": "Dame & Farge",
+          "care": "SPA & Pleie"
+        },
+        "items": [
+          { "name": "Forming og klipp av skjegg", "price": "450 NOK", "desc": "Presisjonslinjer med kniv, saksetrim, skjeggolje og varmt håndkle.", "category": "men", "tag": "Mest Populær" },
+          { "name": "Herreklipp & Styling", "price": "650 NOK", "desc": "Inkluderer vask, hodebunnsmassasje, personlig konsultasjon og føn.", "category": "men" },
+          { "name": "Royal Hot Towel Shave", "price": "690 NOK", "desc": "Klassisk glattbarbering med kniv, tre varme omslag, preshavolje og fuktighetsgivende balm.", "category": "men", "tag": "Signaturbehandling" },
+          { "name": "Pakke: Herreklipp + Skjeggpleie", "price": "1 050 NOK", "desc": "Komplett oppgradering av hår og skjegg i én sammenhengende økt.", "category": "men" },
+          { "name": "Kamuflering av grå hår (Herre)", "price": "380 NOK", "desc": "Naturlig demping av grå strå på 10 minutter i vaskesonen.", "category": "men" },
+          { "name": "Dameklipp & Stylingsett", "price": "890 NOK", "desc": "Grundig konsultasjon, hårvask med tilpasset kur, klipp og tørk/styling.", "category": "women" },
+          { "name": "Foilage Fargeteknikk", "price": "Fra 1 850 NOK", "desc": "Vår signaturteknikk for sømløs solkysset glød med maksimal dybde og skånsomhet.", "category": "women", "tag": "Signaturbehandling" },
+          { "name": "Balayage / Highlights", "price": "Fra 1 650 NOK", "desc": "Håndmalte striper eller folie for et mykt, naturlig og langvarig fargeresultat.", "category": "women" },
+          { "name": "Heldekkende Hårfarging", "price": "Fra 1 200 NOK", "desc": "Rik glansfull farge fra rot til spiss med L'Anza fargebevarende teknologi.", "category": "women" },
+          { "name": "Fest- & Bryllupsstyling", "price": "Fra 950 NOK", "desc": "Elegante oppsett eller bølger for spesielle anledninger.", "category": "women" },
+          { "name": "L'Anza Keratin Healing Kur", "price": "490 NOK", "desc": "Gjenoppbygger skadet hårstyrke og tilfører glans og UV-beskyttelse.", "category": "care", "tag": "Spesialitet" },
+          { "name": "Detox SPA for Hodebunn", "price": "550 NOK", "desc": "Dyprenser fet eller sensitiv hodebunn med Beardburys Clear balancerende ekstrakt.", "category": "care" },
+          { "name": "Manikyr (Håndpleie)", "price": "720 NOK", "desc": "Forming av negler, båndpleie og næringsgivende massasje.", "category": "care" },
+          { "name": "Fjerning av Gel/Forlengelse", "price": "350 NOK", "desc": "Skånsom fjerning i kombinasjon med neglebehandling.", "category": "care" }
+        ]
       },
       "calculator": {
-        "kicker": "Точний інтерактивний розрахунок",
-        "title": "КАЛЬКУЛЯТОР ВАРТОСТІ ВІЗИТУ",
-        "subtitle": "Оберіть потрібну послугу та параметри — отримайте підсумкову вартість у норвезьких кронах (NOK).",
-        "serviceLabel": "Тип послуги",
-        "lengthLabel": "Довжина волосся / складність",
-        "shortOption": "Короткі / Базовий догляд (x1.0)",
-        "mediumOption": "Середні / Розширений догляд (x1.15)",
-        "longOption": "Довгі / Складне моделювання (x1.35)",
-        "treatmentsLabel": "Додаткові салонні процедури",
-        "estimatedTotal": "Орієнтовна вартість:",
-        "bookCalculatedBtn": "Забронювати за цією ціною"
+        "kicker": "Kalkuler Din Pris",
+        "title": "Interaktiv Prisberegner",
+        "subtitle": "Velg dine ønskede behandlinger for å få et estimert prisoverslag før du bestiller.",
+        "selectService": "Velg Hovedtjeneste",
+        "selectAddons": "Velg Tilleggsbehandlinger",
+        "estimatedTotal": "Estimert Pris",
+        "bookThisEstimate": "Bestill Med Denne Estimeringen",
+        "trustNote": "Estimert totalpris ink. mva og tilpasset vask. Ingen skjulte kostnader."
       },
       "craft": {
-        "kicker": "Стандарти та технології",
-        "title": "ЧОМУ КЛІЄНТИ ОБИРАЮТЬ COWBOYS AND ANGELS",
-        "item1Title": "Розпарювання 65°C та небезпечна бритва",
-        "item1Desc": "Використовуємо класичні бавовняні рушники з ефірними оліями для пом'якшення щетини та відсутності подразнень.",
-        "item2Title": "Формула фарбування L'ANZA Keratin",
-        "item2Desc": "Складні техніки Foilage не пересушують волосся завдяки запечатуванню амінокислот під час освітлення.",
-        "item3Title": "Пунктуальність без черг",
-        "item3Desc": "Ваш майстер чекає вас у заброньовану хвилину. Час клієнта — наш головний пріоритет.",
-        "item4Title": "Дві зручні локації у Тронгеймі",
-        "item4Desc": "Кампус Moholt із безкоштовним паркуванням та престижний район Solsiden у самому центрі."
-      },
-      "beforeAfter": {
-        "kicker": "Результати нашої праці",
-        "title": "ТРАНСФОРМАЦІЯ СТИЛЮ ТА ФАКТУРИ",
-        "subtitle": "Перетягніть слайдер, щоб оцінити точність ліній та насиченість відтінків.",
-        "labelBefore": "До візиту",
-        "labelAfter": "Після майстра"
+        "kicker": "Standard & Kvalitet",
+        "title": "Hvorfor Håret Ditt Merker Forskjellen",
+        "quote": "«Den mest presise knivbarberingen og fargeteknikken i Trondheim — vi tar håndverket på alvor uten jåleri.»",
+        "quoteAuthor": "Jan Emil — Daglig Leder & Mesterbarber",
+        "body1": "Hos Cowboys and Angels ser vi på hver klipp og farging som et genuint håndverk. Vi benytter kun sertifiserte produkter fra L'Anza, Keune og Beardburys som beskytter mot UV-stråling og bevarer fargen i ukesvis.",
+        "body2": "Med avdelinger på både Moholt og Solsiden kombinerer vi den uformelle, stemningsfulle barbershop-kulturen med faglig kompetanse innen avansert fargeteori.",
+        "stat1Val": "2",
+        "stat1Label": "Avdelinger i Trondheim",
+        "stat2Val": "4.7★",
+        "stat2Label": "Google Vurdering",
+        "stat3Val": "2018",
+        "stat3Label": "Etablert i Trondheim",
+        "stat4Val": "9",
+        "stat4Label": "Sertifiserte Stylister"
       },
       "gallery": {
-        "kicker": "Портфоліо робіт",
-        "title": "ФОТОГАЛЕРЕЯ РОБІТ З MOHOLT ТА SOLSIDEN",
-        "subtitle": "Реальні клієнти, авторські деталізовані фейди, моделювання бороди та складні відтінки Foilage."
+        "kicker": "Våre Arbeider",
+        "title": "Resultater fra Salongen",
+        "subtitle": "Utforsk bildegalleriet av våre nylige herreklipp, skjeggforminger og Foilage-forvandlinger."
+      },
+      "products": {
+        "kicker": "Egen Nettbutikk",
+        "title": "Profesjonell Hår- og Skjeggpleie",
+        "subtitle": "Kjøp de samme eksklusive produktene som våre stylister bruker i salongen.",
+        "items": [
+          {
+            "name": "L'Anza Keratin Healing Oil Shine Spray",
+            "price": "399 NOK",
+            "desc": "Inneholder keratin som pleier, beskytter mot varme og UV-stråler, samt gir glans.",
+            "tag": "Bestseller"
+          },
+          {
+            "name": "Beardburys Clear Shampoo",
+            "price": "280 NOK",
+            "desc": "Spesiallaget for fet/svett hodebunn med oppfriskende unisex duft av lime.",
+            "tag": "For Skjegg & Hår"
+          },
+          {
+            "name": "Keune Curl Control Shampoo & Balsam",
+            "price": "540 NOK",
+            "desc": "Maksimal fuktighet og definisjon for naturlige krøller uten krus.",
+            "tag": "For Krøller"
+          },
+          {
+            "name": "Neccin Nr. 1 Sensitive Shampoo",
+            "price": "320 NOK",
+            "desc": "Konsentrert spesialshampoo som umiddelbart roer ned kløe, rødhet og flass.",
+            "tag": "For Sensitiv Hodebunn"
+          }
+        ],
+        "shopLink": "Besøk Hele Nettbutikken ↗"
       },
       "team": {
-        "kicker": "Майстри мережі",
-        "title": "КОМАНДА COWBOYS AND ANGELS",
-        "subtitle": "Досвідчені барбери та колористи з глибоким розумінням анатомії обличчя та структури волосся."
-      },
-      "shop": {
-        "kicker": "Офіційний шоурум",
-        "title": "ПРОФЕСІЙНИЙ ДОМАШНІЙ ДОГЛЯД",
-        "subtitle": "Сертифікована косметика L'ANZA, KEUNE та Bearburys із можливістю самовивозу з салону.",
-        "buyNow": "Замовити із самовивозом",
-        "prod1Name": "L'ANZA Neem Plant Serum",
-        "prod1Desc": "Відновлювальна сироватка з гавайським німом та кератином. UV-захист та збереження кольору.",
-        "prod1Price": "420 NOK",
-        "prod2Name": "KEUNE Curl Control Shampoo",
-        "prod2Desc": "Спеціалізований шампунь для чіткого структурування природних та текстурованих локонів.",
-        "prod2Price": "380 NOK",
-        "prod3Name": "Bearburys Clear Shampoo",
-        "prod3Desc": "Себорегулюючий салонний шампунь із екстрактом свіжого лайма для глибокого очищення шкіри голови.",
-        "prod3Price": "310 NOK"
+        "kicker": "Møt Stylistene",
+        "title": "Våre Mesterbarberere og Stylister",
+        "subtitle": "Erfarne fagfolk som brenner for presisjon, stil og personlig service.",
+        "members": [
+          { "name": "Jan Emil", "role": "Daglig Leder & Mesterbarber", "desc": "Spesialist på herremote, knivbarbering og salongsdrift.", "loc": "Solsiden & Moholt" },
+          { "name": "Ragnhild Nordvik", "role": "Senior Stylist & Fargespesialist", "desc": "Ekspert på Foilage, Balayage og kompliserte fargekorreksjoner.", "loc": "Moholt" },
+          { "name": "Yana", "role": "Stylist & Hårkunstner", "desc": "Fokus på presisjonsklipp for damer og kreative stylinger.", "loc": "Moholt" },
+          { "name": "Austeja", "role": "Barber & Stylist", "desc": "Mester på fade-teknikker og skjeggdesign.", "loc": "Solsiden" },
+          { "name": "Hamodi", "role": "Barberer", "desc": "Spesialist på tradisjonelt hot towel shave og konturer.", "loc": "Solsiden" },
+          { "name": "Maneewan", "role": "Neglespesialist & Spa", "desc": "Sertifisert for manikyr og avslappende behandlinger.", "loc": "Moholt" },
+          { "name": "Leo Casanova", "role": "Stylist", "desc": "Fokus på moderne herretrender og tekstur.", "loc": "Solsiden" },
+          { "name": "Amin Cadie", "role": "Barberer", "desc": "Ekspert på knivpresisjon og klassiske snitt.", "loc": "Solsiden" },
+          { "name": "Daniel", "role": "Stylist & Barber", "desc": "Allsidig fagmann innen både dame- og herreklipp.", "loc": "Moholt" }
+        ]
       },
       "faq": {
-        "kicker": "Експертні відповіді",
-        "title": "ЧАСТІ ЗАПИТАННЯ ТА РЕКОМЕНДАЦІЇ МАЙСТРІВ",
-        "subtitle": "Все про збереження кольору, догляд за хімічною завивкою та чутливу шкіру голови."
+        "kicker": "Nyttig Informasjon",
+        "title": "Ofte Stilte Spørsmål fra Våre Kunder",
+        "subtitle": "Faglige råd fra våre frisører om pleie, farging, permanent og hodebunn."
       },
-      "contact": {
-        "kicker": "Швидка онлайн-бронь",
-        "title": "ОБЕРІТЬ ЗРУЧНИЙ ЧАС ТА ФІЛІЮ У ТРОНГЕЙМІ",
-        "subtitle": "Без створення акаунтів та підтверджень по пошті. Оберіть зручний салон та час.",
-        "formName": "Ваше ім'я",
-        "formPhone": "Номер телефону (+47...)",
-        "formLocation": "Локація у Тронгеймі",
-        "formService": "Бажана послуга",
-        "formDate": "Бажана дата та час",
-        "submitBtn": "Підтвердити бронювання",
-        "successMsg": "Дякуємо! Вашу заявку прийнято. Адміністратор зателефонує протягом 10 хвилин для підтвердження.",
-        "moholtTitle": "Філія Moholt",
-        "moholtDesc": "Herman Krags vei 43, Trondheim (поруч із кампусом NTNU)",
-        "solsidenTitle": "Філія Solsiden",
-        "solsidenDesc": "TMV-kaia 23, Trondheim (набережна Solsiden)"
+      "booking": {
+        "kicker": "Rask Bestilling",
+        "title": "Sikre Deg Time I Dag",
+        "subtitle": "Velg din avdeling, ønsket behandling og tidspunkt. Ingen registrering eller passord kreves.",
+        "hoursTable": "Man – Fre: 09:00 – 18:00 · Lørdag: 09:00 – 16:00 · Søndag: Stengt",
+        "trustLine": "SMS-påminnelse sendes 24 timer før timen · Gratis avbestilling inntil 12t før",
+        "selectLocation": "Velg Avdeling",
+        "locationSolsiden": "Solsiden (Barbershop)",
+        "locationMoholt": "Moholt (Salong & Barbershop)",
+        "selectService": "Velg Behandling",
+        "nameLabel": "Ditt Navn",
+        "namePlaceholder": "f.eks. Ole Hansen",
+        "phoneLabel": "Telefonnummer",
+        "phonePlaceholder": "f.eks. 900 00 000",
+        "dateLabel": "Ønsket Dato",
+        "timeLabel": "Ønsket Klokkeslett",
+        "notesLabel": "Kommentar (valgfritt)",
+        "notesPlaceholder": "Skriv eventuelle ønsker eller spørsmål...",
+        "submitBtn": "Bekreft Bestilling Nå",
+        "successTitle": "Takk for din bestilling!",
+        "successDesc": "Vi har mottatt din reservasjon og sender deg en SMS-bekreftelse innen kort tid."
+      },
+      "locations": {
+        "kicker": "Finn Oss i Trondheim",
+        "title": "Våre To Avdelinger",
+        "subtitle": "Gå innom eller bestill time på Solsiden eller Moholt.",
+        "solsidenAddr": "Beddingen 8, Solsiden, 7014 Trondheim",
+        "moholtAddr": "Brøsetveien 168, Moholt, 7050 Trondheim",
+        "hoursTitle": "Åpningstider",
+        "hoursWeekdays": "Man - Fre: 09:00 - 18:00",
+        "hoursSaturday": "Lørdag: 09:00 - 16:00",
+        "hoursSunday": "Søndag: Stengt",
+        "getDirections": "Få Veibeskrivelse i Google Maps ↗"
       },
       "footer": {
-        "tagline": "Провідний барбершоп та студія колористики у Тронгеймі. Створюємо стиль з 2018 року.",
-        "hoursTitle": "Години роботи",
-        "hoursText": "Понеділок — Субота: 09:00 – 18:00\nНеділя: Зачинено",
-        "navTitle": "Навігація",
-        "socialTitle": "Соціальні мережі",
-        "copy": "© 2026 Cowboys and Angels frisørsalong og barbershop. Усі права захищено.",
-        "devCredit": "Розроблено Студія Тест"
+        "tagline": "Cowboys and Angels — Trondheims fremste barbershop og frisørsalong siden 2018.",
+        "quickLinks": "Hurtiglenker",
+        "contactHeader": "Kontakt & Booking",
+        "phone": "+47 73 93 11 00",
+        "email": "post@cowboysandangels.shop",
+        "copyright": "© 2026 Cowboys and Angels AS. Org.nr 921 482 110. Alle rettigheter reservert.",
+        "studioCredit": "Utviklet av Студія Тест",
+        "brandVoice": "Mesterhåndverk og fargeekspertise på Solsiden og Moholt siden 2018."
       }
     },
     "en": {
       "meta": {
-        "title": "Cowboys and Angels — Barber & Hair Salon in Trondheim",
-        "description": "Book men's haircuts, beard styling with 65°C hot towel, and Foilage hair coloring online. Locations in Moholt and Solsiden."
+        "title": "Cowboys and Angels | Hair Salon & Barbershop Trondheim",
+        "description": "Foilage specialists, men's haircuts, and traditional hot towel shaving at Moholt and Solsiden in Trondheim."
       },
       "nav": {
         "concept": "Concept",
         "services": "Services & Prices",
-        "calculator": "Calculator",
-        "craft": "Standards",
-        "portfolio": "Portfolio",
-        "team": "Team",
-        "shop": "Products",
+        "calculator": "Price Calculator",
+        "craft": "Craftsmanship",
+        "gallery": "Gallery",
+        "shop": "Shop",
+        "team": "Our Team",
         "faq": "FAQ",
-        "contact": "Book Now",
-        "phone": "+47 73 93 10 00",
-        "bookNow": "Book Appointment"
+        "locations": "Locations",
+        "bookCta": "Book Appointment"
       },
       "hero": {
-        "kicker": "Est. 2018 · Trondheim, Norway",
-        "h1First": "TRADITIONAL BARBERING & ADVANCED COLORING",
-        "h1Italic": "Foilage",
-        "h1Last": "UNDER ONE ROOF",
-        "subtitle": "Instant online booking without registration. Two locations in Trondheim: Moholt student campus and Solsiden waterfront.",
-        "ctaPrimary": "Book Appointment Online",
-        "ctaSecondary": "Calculate Price",
-        "badgeText": "4.6/5 Google Maps · Over 100 verified reviews",
-        "moholtAddr": "Moholt: Herman Krags vei 43",
-        "solsidenAddr": "Solsiden: TMV-kaia 23",
-        "hours": "Mon-Sat: 09:00 - 18:00"
+        "kicker": "Est. 2018 — Trondheim, Solsiden & Moholt",
+        "h1First": "Classic Craft.",
+        "h1Second": "Raw Elegance.",
+        "subtitle": "Traditional razor shaving at Solsiden and advanced coloring techniques like Foilage at Moholt. Book directly in under 30 seconds without login.",
+        "bookNow": "Book Appointment Now",
+        "viewPrices": "View Price List →",
+        "phoneFast": "Call directly: +47 73 93 11 00",
+        "ratingText": "4.7 / 5.0 · 420+ Google reviews",
+        "solsidenBrief": "SOLSIDEN BARBERSHOP: Razor fades, sharp contours & hot towel shaves",
+        "moholtBrief": "MOHOLT SALON: Foilage experts, balayage, women's styling & scalp SPA"
       },
-      "socialProof": {
-        "kicker": "Network Facts & Figures",
-        "stat1Value": "2 Studios",
-        "stat1Label": "Moholt & Solsiden in Trondheim",
-        "stat2Value": "from 450 NOK",
-        "stat2Label": "Fixed starting price for haircut",
-        "stat3Value": "4.6 / 5.0",
-        "stat3Label": "Google rating based on 100+ reviews",
-        "stat4Value": "0 min delay",
-        "stat4Label": "Service strictly on schedule"
-      },
+      "ticker": [
+        "Solsiden Barbershop",
+        "Moholt Hair & Barber",
+        "Foilage Specialists",
+        "Royal Hot Towel Shave",
+        "L'Anza & Keune Certified",
+        "No Forced Login",
+        "4.7★ Google Rating"
+      ],
       "concept": {
-        "kicker": "Dual Expertise",
-        "title": "TWO WORLDS — ONE UNCOMPROMISING STANDARD",
-        "description": "We combined traditional barbering precision with advanced hair coloring techniques. The men's barbershop operates with hot towel rituals, while our color studio uses L'ANZA and KEUNE formulas.",
-        "barberTitle": "Gentlemen's Barbershop",
-        "barberDesc": "Straight razor shaving, beard sculpting, razor fades, and soothing hot towel treatments.",
-        "salonTitle": "Foilage Color Studio",
-        "salonDesc": "Foilage and Balayage techniques with seamless transitions while preserving hair health.",
-        "shopTitle": "Professional Showroom",
-        "shopDesc": "Certified L'ANZA, KEUNE, and Bearburys haircare products available for pickup during your visit."
+        "kicker": "Two Targeted Concepts",
+        "title": "Bridging Heritage Barbershop & Modern Hair Art",
+        "lead": "We removed friction and forced login barriers. Choose your preferred Trondheim branch and experience true precision.",
+        "solsidenTitle": "Solsiden — Pure Barbershop",
+        "solsidenDesc": "Located in Trondheim's vibrant district. Dedicated strictly to men's cuts, sharp contours, beard trims, and hot towel shaves.",
+        "solsidenFeature1": "Specialized in traditional razor fades & beards",
+        "solsidenFeature2": "Relaxed atmosphere with signature beverages",
+        "moholtTitle": "Moholt — Salon & Barbershop",
+        "moholtDesc": "Our spacious flagship salon near NTNU Moholt. Offering full unisex hair styling, advanced Foilage, Balayage, and scalp SPA.",
+        "moholtFeature1": "Experts in Foilage & color correction",
+        "moholtFeature2": "Dedicated women and men styling zones"
       },
       "services": {
-        "kicker": "Service Menu & Pricing",
-        "title": "TRANSPARENT FIXED PRICING",
-        "subtitle": "Clear upfront rates with no hidden fees for length or materials.",
-        "tabAll": "All Services",
-        "tabMen": "Barbershop (Men)",
-        "tabWomen": "Coloring & Styling",
-        "tabSpecial": "Treatments & Packages",
-        "bookServiceBtn": "Select Master & Time"
+        "kicker": "Transparent Pricing",
+        "title": "Treatments & Prices",
+        "subtitle": "No hidden fees or surprises at checkout. All services use premium L'Anza and Keune products.",
+        "footnote": "* All color and chemical treatments include color-locking wash with L'Anza and scalp massage.",
+        "tabs": {
+          "men": "Men & Beard",
+          "women": "Women & Color",
+          "care": "SPA & Care"
+        },
+        "items": [
+          { "name": "Beard Sculpting & Trim", "price": "450 NOK", "desc": "Razor lines, scissor trim, beard oil & hot towel treatment.", "category": "men", "tag": "Most Popular" },
+          { "name": "Men's Haircut & Styling", "price": "650 NOK", "desc": "Includes wash, scalp massage, consultation, and blow dry.", "category": "men" },
+          { "name": "Royal Hot Towel Shave", "price": "690 NOK", "desc": "Classic razor shave with three hot towels and moisturizing balm.", "category": "men", "tag": "Signature" },
+          { "name": "Package: Haircut + Beard Care", "price": "1,050 NOK", "desc": "Complete hair and beard overhaul in one session.", "category": "men" },
+          { "name": "Men's Gray Camouflage", "price": "380 NOK", "desc": "Subtle grey blending in 10 minutes at the wash station.", "category": "men" },
+          { "name": "Women's Haircut & Style", "price": "890 NOK", "desc": "In-depth consultation, wash, treatment, cut, and style.", "category": "women" },
+          { "name": "Foilage Coloring Technique", "price": "From 1,850 NOK", "desc": "Our signature sun-kissed glow technique for max depth.", "category": "women", "tag": "Signature" },
+          { "name": "Balayage / Highlights", "price": "From 1,650 NOK", "desc": "Hand-painted dimensional highlights for natural results.", "category": "women" },
+          { "name": "Full Hair Color", "price": "From 1,200 NOK", "desc": "Rich vibrant color with L'Anza color-lock technology.", "category": "women" },
+          { "name": "Event Styling & Updo", "price": "From 950 NOK", "desc": "Elegant styling or waves for special occasions.", "category": "women" },
+          { "name": "L'Anza Keratin Healing Treatment", "price": "490 NOK", "desc": "Restores hair strength with shine & UV protection.", "category": "care", "tag": "Specialty" },
+          { "name": "Scalp Detox SPA", "price": "550 NOK", "desc": "Deeply cleanses oily or sensitive scalps with lime extract.", "category": "care" },
+          { "name": "Manicure Hand Care", "price": "720 NOK", "desc": "Nail shaping, cuticle care, and nourishing massage.", "category": "care" },
+          { "name": "Gel / Extension Removal", "price": "350 NOK", "desc": "Gentle removal combined with nail treatment.", "category": "care" }
+        ]
       },
       "calculator": {
-        "kicker": "Interactive Estimator",
-        "title": "CALCULATE YOUR VISIT COST",
-        "subtitle": "Select service type and hair complexity to view your total estimate in Norwegian Kroner (NOK).",
-        "serviceLabel": "Service Type",
-        "lengthLabel": "Hair Length / Complexity",
-        "shortOption": "Short / Basic Care (x1.0)",
-        "mediumOption": "Medium / Extended Care (x1.15)",
-        "longOption": "Long / Complex Styling (x1.35)",
-        "treatmentsLabel": "Additional Treatments",
-        "estimatedTotal": "Estimated Total:",
-        "bookCalculatedBtn": "Book at This Price"
+        "kicker": "Calculate Your Rate",
+        "title": "Interactive Price Estimator",
+        "subtitle": "Select your desired treatments to preview an estimated total before booking.",
+        "selectService": "Select Primary Service",
+        "selectAddons": "Select Care Add-ons",
+        "estimatedTotal": "Estimated Total",
+        "bookThisEstimate": "Book With This Estimate",
+        "trustNote": "Estimated total incl. VAT and tailored wash. No hidden fees."
       },
       "craft": {
-        "kicker": "Our Core Value",
-        "title": "WHY CLIENTS CHOOSE COWBOYS AND ANGELS",
-        "item1Title": "65°C Hot Towel Razor Shave",
-        "item1Desc": "Classic steam towels infused with essential oils to soften facial hair and eliminate irritation.",
-        "item2Title": "L'ANZA Keratin Protection Formula",
-        "item2Desc": "Complex Foilage techniques seal amino acids during lightning to prevent hair damage.",
-        "item3Title": "Punctual Zero-Wait Service",
-        "item3Desc": "Your master is ready exactly at your reserved time. Your schedule is respected.",
-        "item4Title": "Two Strategic Trondheim Locations",
-        "item4Desc": "Moholt campus with free parking and Solsiden waterfront in the city center."
-      },
-      "beforeAfter": {
-        "kicker": "Proven Craftsmanship",
-        "title": "STYLE & TEXTURE TRANSFORMATIONS",
-        "subtitle": "Drag the slider to inspect fade precision and vibrant hair tones.",
-        "labelBefore": "Before",
-        "labelAfter": "After"
+        "kicker": "Quality Standard",
+        "title": "Why Your Hair Feels The Difference",
+        "quote": "«The most precise razor shaving and coloring technique in Trondheim — true craftsmanship without fuss.»",
+        "quoteAuthor": "Jan Emil — General Manager & Master Barber",
+        "body1": "At Cowboys and Angels, every haircut and color treatment is a true craft. We use certified L'Anza, Keune, and Beardburys products protecting against UV damage.",
+        "body2": "With branches in Moholt and Solsiden, we blend classic barbershop culture with high-end coloring expertise.",
+        "stat1Val": "2",
+        "stat1Label": "Branches in Trondheim",
+        "stat2Val": "4.7★",
+        "stat2Label": "Google Score",
+        "stat3Val": "2018",
+        "stat3Label": "Established in Trondheim",
+        "stat4Val": "9",
+        "stat4Label": "Certified Stylists"
       },
       "gallery": {
-        "kicker": "Real Portfolio",
-        "title": "GALLERY FROM MOHOLT & SOLSIDEN",
-        "subtitle": "Client photos, detailed skin fades, beard sculpting, and rich Foilage shades."
+        "kicker": "Our Portfolio",
+        "title": "Results From Our Salon",
+        "subtitle": "Explore recent haircuts, beard shaping, and Foilage transformations."
+      },
+      "products": {
+        "kicker": "E-Commerce Store",
+        "title": "Professional Hair & Beard Care",
+        "subtitle": "Purchase the same salon-grade products our stylists use.",
+        "items": [
+          {
+            "name": "L'Anza Keratin Healing Oil Shine Spray",
+            "price": "399 NOK",
+            "desc": "Contains keratin nourishing and protecting against heat and UV rays.",
+            "tag": "Bestseller"
+          },
+          {
+            "name": "Beardburys Clear Shampoo",
+            "price": "280 NOK",
+            "desc": "Formulated for oily scalp with refreshing unisex lime scent.",
+            "tag": "Beard & Hair"
+          },
+          {
+            "name": "Keune Curl Control Shampoo & Conditioner",
+            "price": "540 NOK",
+            "desc": "Maximum hydration and definition for natural curls.",
+            "tag": "For Curls"
+          },
+          {
+            "name": "Neccin No. 1 Sensitive Shampoo",
+            "price": "320 NOK",
+            "desc": "Concentrated shampoo soothing itchiness and scalp redness.",
+            "tag": "Sensitive Scalp"
+          }
+        ],
+        "shopLink": "Visit Full Online Shop ↗"
       },
       "team": {
-        "kicker": "Meet Our Masters",
-        "title": "COWBOYS AND ANGELS TEAM",
-        "subtitle": "Experienced barbers and color specialists with deep knowledge of facial structure and hair health."
-      },
-      "shop": {
-        "kicker": "Official Showroom",
-        "title": "PROFESSIONAL HOME CARE",
-        "subtitle": "Certified L'ANZA, KEUNE, and Bearburys haircare products ready for pickup.",
-        "buyNow": "Order for Pickup",
-        "prod1Name": "L'ANZA Neem Plant Serum",
-        "prod1Desc": "Restorative serum with Hawaiian neem and keratin. UV protection and color retention.",
-        "prod1Price": "420 NOK",
-        "prod2Name": "KEUNE Curl Control Shampoo",
-        "prod2Desc": "Shampoo specifically formulated for natural curl definition and bounce.",
-        "prod2Price": "380 NOK",
-        "prod3Name": "Bearburys Clear Shampoo",
-        "prod3Desc": "Spackling scalp shampoo with lime extract for deep purifying action.",
-        "prod3Price": "310 NOK"
+        "kicker": "Meet The Team",
+        "title": "Master Barbers & Stylists",
+        "subtitle": "Experienced professionals passionate about precision and style.",
+        "members": [
+          { "name": "Jan Emil", "role": "General Manager & Master Barber", "desc": "Specialist in men's fashion, razor shaving, and salon management.", "loc": "Solsiden & Moholt" },
+          { "name": "Ragnhild Nordvik", "role": "Senior Stylist & Color Expert", "desc": "Expert in Foilage, Balayage, and complex color corrections.", "loc": "Moholt" },
+          { "name": "Yana", "role": "Stylist & Hair Artist", "desc": "Focus on women's precision cuts and creative styling.", "loc": "Moholt" },
+          { "name": "Austeja", "role": "Barber & Stylist", "desc": "Master of fade techniques and beard design.", "loc": "Solsiden" },
+          { "name": "Hamodi", "role": "Barber", "desc": "Specialist in traditional hot towel shaving and contours.", "loc": "Solsiden" },
+          { "name": "Maneewan", "role": "Nail & SPA Specialist", "desc": "Certified for manicure and scalp wellness treatments.", "loc": "Moholt" },
+          { "name": "Leo Casanova", "role": "Stylist", "desc": "Focus on modern hair trends and texture.", "loc": "Solsiden" },
+          { "name": "Amin Cadie", "role": "Barber", "desc": "Razor precision and classic silhouettes expert.", "loc": "Solsiden" },
+          { "name": "Daniel", "role": "Stylist & Barber", "desc": "Versatile master in both men's and women's hair design.", "loc": "Moholt" }
+        ]
       },
       "faq": {
-        "kicker": "Expert Advice",
-        "title": "FREQUENTLY ASKED QUESTIONS",
-        "subtitle": "Guidelines on color protection, perm maintenance, and sensitive scalp care."
+        "kicker": "Client FAQ",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Expert answers from our stylists regarding hair care, coloring, and scalp health."
       },
-      "contact": {
-        "kicker": "Fast Online Booking",
-        "title": "CHOOSE YOUR PREFERRED TIME & STUDIO",
-        "subtitle": "No mandatory account creation or email validation required.",
-        "formName": "Full Name",
-        "formPhone": "Phone Number (+47...)",
-        "formLocation": "Trondheim Location",
-        "formService": "Selected Service",
-        "formDate": "Preferred Date & Time",
-        "submitBtn": "Confirm Booking",
-        "successMsg": "Thank you! Your booking has been received. Our administrator will call you within 10 minutes.",
-        "moholtTitle": "Moholt Studio",
-        "moholtDesc": "Herman Krags vei 43, Trondheim (near NTNU campus)",
-        "solsidenTitle": "Solsiden Studio",
-        "solsidenDesc": "TMV-kaia 23, Trondheim (Solsiden waterfront)"
+      "booking": {
+        "kicker": "Quick Booking",
+        "title": "Secure Your Appointment Today",
+        "subtitle": "Select location, service, and preferred time. No login or password required.",
+        "hoursTable": "Mon – Fri: 09:00 – 18:00 · Saturday: 09:00 – 16:00 · Sunday: Closed",
+        "trustLine": "SMS reminder sent 24h prior · Free cancellation up to 12h before",
+        "selectLocation": "Select Location",
+        "locationSolsiden": "Solsiden (Barbershop)",
+        "locationMoholt": "Moholt (Salon & Barbershop)",
+        "selectService": "Select Service",
+        "nameLabel": "Your Name",
+        "namePlaceholder": "e.g. Ole Hansen",
+        "phoneLabel": "Phone Number",
+        "phonePlaceholder": "e.g. 900 00 000",
+        "dateLabel": "Preferred Date",
+        "timeLabel": "Preferred Time",
+        "notesLabel": "Notes (optional)",
+        "notesPlaceholder": "Any special notes or requirements...",
+        "submitBtn": "Confirm Booking Now",
+        "successTitle": "Thank you for your booking!",
+        "successDesc": "We have received your reservation and will send an SMS confirmation shortly."
+      },
+      "locations": {
+        "kicker": "Find Us In Trondheim",
+        "title": "Our Two Locations",
+        "subtitle": "Visit or book at Solsiden or Moholt.",
+        "solsidenAddr": "Beddingen 8, Solsiden, 7014 Trondheim",
+        "moholtAddr": "Brøsetveien 168, Moholt, 7050 Trondheim",
+        "hoursTitle": "Opening Hours",
+        "hoursWeekdays": "Mon - Fri: 09:00 - 18:00",
+        "hoursSaturday": "Saturday: 09:00 - 16:00",
+        "hoursSunday": "Sunday: Closed",
+        "getDirections": "Get Directions on Google Maps ↗"
       },
       "footer": {
-        "tagline": "Barbershop and color studio network in Trondheim. Crafting style since 2018.",
-        "hoursTitle": "Opening Hours",
-        "hoursText": "Monday — Saturday: 09:00 – 18:00\nSunday: Closed",
-        "navTitle": "Navigation",
-        "socialTitle": "Social Media",
-        "copy": "© 2026 Cowboys and Angels frisørsalong og barbershop. All rights reserved.",
-        "devCredit": "Developed by Студія Тест"
+        "tagline": "Cowboys and Angels — Trondheim's premier barbershop and hair salon since 2018.",
+        "quickLinks": "Quick Links",
+        "contactHeader": "Contact & Booking",
+        "phone": "+47 73 93 11 00",
+        "email": "post@cowboysandangels.shop",
+        "copyright": "© 2026 Cowboys and Angels AS. Org.nr 921 482 110. All rights reserved.",
+        "studioCredit": "Utviklet av Студія Тест",
+        "brandVoice": "Master craftsmanship & color expertise at Solsiden and Moholt since 2018."
       }
     }
   }

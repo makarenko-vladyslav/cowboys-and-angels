@@ -1,183 +1,230 @@
 "use client";
 
-import { useLocale } from "@/lib/i18n";
+import { useLocale } from '@/lib/i18n';
+import { Reveal } from '@/components/motion';
 
 export default function Hero() {
   const { t } = useLocale();
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-[hsl(25_20%_7%)] text-white">
-      {/* Background Video Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <section className="relative min-h-[100svh] flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-bg-dark">
+      
+      {/* Background Stack Layer 1: Looping Muted Stock Video */}
+      <div className="absolute inset-0 z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
           poster="https://images.pexels.com/videos/7686555/pexels-photo-7686555.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
-          className="w-full h-full object-cover opacity-35 scale-105"
+          className="w-full h-full object-cover scale-105"
         >
-          <source
-            src="https://videos.pexels.com/video-files/7686555/7686555-hd_1920_1080_24fps.mp4"
-            type="video/mp4"
-          />
+          <source src="https://videos.pexels.com/video-files/7686555/7686555-hd_1920_1080_24fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(25_20%_7%/0.85)] via-[hsl(25_20%_7%/0.65)] to-[hsl(25_20%_7%)]" />
+
+        {/* Background Stack Layer 2: Dark Scrim */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark via-bg-dark/80 to-bg-dark/50" />
       </div>
 
-      {/* Decorative Background Watermark */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden"
+      {/* Background Layer 3: Giant Decorative Watermark Type */}
+      <div 
+        aria-hidden="true" 
+        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
       >
-        <span className="font-display font-extrabold text-[18vw] leading-none text-white/[0.03] uppercase tracking-tighter whitespace-nowrap select-none">
+        <span className="text-[18vw] font-display font-bold uppercase text-white/[0.03] leading-none whitespace-nowrap tracking-tighter">
           TRONDHEIM
         </span>
       </div>
 
-      {/* Flanking Mini-Copy (Left Column) */}
-      <div className="hidden xl:block absolute left-6 top-1/2 -translate-y-1/2 z-10 space-y-8 max-w-[140px] text-[10px] uppercase font-bold text-white/40 tracking-widest leading-tight">
-        <div>
-          <span className="block text-[hsl(28_85%_52%)]">MOHOLT</span>
-          HERMAN KRAGS VEI 43
-        </div>
-        <div className="w-8 h-px bg-white/20" />
-        <div>
-          <span className="block text-[hsl(28_85%_52%)]">SOLSIDEN</span>
-          TMV-KAIA 23
-        </div>
-      </div>
-
-      {/* Rotating Circular Text Seal (Right Side) */}
-      <div className="hidden md:flex absolute right-8 top-32 z-10 items-center justify-center pointer-events-none">
-        <div className="relative w-28 h-28 rounded-full border border-white/10 flex items-center justify-center bg-[hsl(25_20%_8%/0.6)] backdrop-blur-sm">
-          <svg className="w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100">
-            <path
-              id="sealPath"
-              d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-              fill="none"
-            />
-            <text className="text-[8.5px] uppercase font-display font-bold fill-[hsl(28_85%_52%)] tracking-[0.2em]">
-              <textPath href="#sealPath">
-                COWBOYS & ANGELS · TRONDHEIM · EST 2018 ·
-              </textPath>
-            </text>
-          </svg>
-          <span className="absolute font-display font-extrabold text-sm text-white">TRD</span>
-        </div>
-      </div>
-
       {/* Main Content Area */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full grid lg:grid-cols-12 gap-8 items-center my-auto">
-        <div className="lg:col-span-8 flex flex-col items-start">
-          {/* Kicker with REAL Meta */}
-          <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[hsl(28_85%_52%/0.12)] border border-[hsl(28_85%_52%/0.35)] text-[hsl(28_85%_52%)] text-xs font-bold uppercase tracking-widest mb-6">
-            <span className="w-2 h-2 rounded-full bg-[hsl(28_85%_52%)] animate-pulse" />
-            {t("hero.kicker") as string}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          {/* Main Hero Column */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-left">
+            
+            {/* Kicker with REAL Meta */}
+            <Reveal>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent text-xs uppercase tracking-widest font-display font-semibold w-fit">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                {String(t('hero.kicker'))}
+              </div>
+            </Reveal>
+
+            {/* Multi-line Poster H1 with ONE word styled differently */}
+            <Reveal delay={0.1}>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold font-display uppercase tracking-tight text-white leading-[0.95]">
+                {String(t('hero.h1First'))} <br />
+                <span className="text-accent italic font-normal">{String(t('hero.h1Second'))}</span>
+              </h1>
+            </Reveal>
+
+            {/* 1-2 line subtitle */}
+            <Reveal delay={0.2}>
+              <p className="text-base sm:text-lg text-text-muted max-w-2xl leading-relaxed font-body">
+                {String(t('hero.subtitle'))}
+              </p>
+            </Reveal>
+
+            {/* CTA Pair */}
+            <Reveal delay={0.3}>
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <a
+                  href="#bestilling"
+                  className="bg-accent hover:bg-accent-hover text-bg-dark font-display font-bold uppercase tracking-wider text-sm sm:text-base px-8 py-4 rounded transition-all shadow-xl hover:shadow-accent/30"
+                >
+                  {String(t('hero.bookNow'))}
+                </a>
+
+                <a
+                  href="#tjenester"
+                  className="bg-primary-light/80 hover:bg-primary-light text-text-light font-display font-semibold uppercase tracking-wider text-sm px-6 py-4 rounded border border-border-dark transition-colors"
+                >
+                  {String(t('hero.viewPrices'))}
+                </a>
+              </div>
+            </Reveal>
+
+            {/* 3-Item Meta Strip with Hairline Separators */}
+            <Reveal delay={0.4}>
+              <div className="pt-6 border-t border-border-dark/60 flex flex-wrap gap-4 sm:gap-6 items-center text-xs text-text-muted font-display">
+                <div className="flex items-center gap-2">
+                  <span className="text-accent font-bold text-sm">Åpent</span>
+                  <span>Man - Fre: 09:00 - 18:00</span>
+                </div>
+
+                <div className="h-3 w-px bg-border-dark hidden sm:block" />
+
+                <div>
+                  <span className="text-text-light font-medium">Beddingen 8 &amp; Brøsetveien 168</span>
+                </div>
+
+                <div className="h-3 w-px bg-border-dark hidden sm:block" />
+
+                <div className="flex items-center gap-2">
+                  <span className="text-accent font-bold">4.7 ★</span>
+                  <span>{String(t('hero.ratingText'))}</span>
+                </div>
+              </div>
+            </Reveal>
+
           </div>
 
-          {/* Multi-line Poster H1 with ONE Word set in Italic Serif */}
-          <h1 className="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.92] text-white uppercase tracking-tight mb-6">
-            {t("hero.h1First") as string}{" "}
-            <span className="font-serif italic font-normal text-[hsl(28_85%_52%)] text-[1.08em] normal-case px-1">
-              {t("hero.h1Italic") as string}
-            </span>{" "}
-            {t("hero.h1Last") as string}
-          </h1>
+          {/* Secondary Hero Column: Quick Booking Card + Rotating Circular Text Seal */}
+          <div className="lg:col-span-5 relative">
+            
+            {/* Floating Text-Only Rotating Circular Seal (Zero Glyphs!) */}
+            <div className="hidden xl:block absolute -top-12 -right-8 z-20 pointer-events-none select-none">
+              <div className="w-28 h-28 relative flex items-center justify-center animate-spin-slow">
+                <svg viewBox="0 0 120 120" className="w-full h-full text-accent font-display text-[10px] tracking-widest uppercase font-bold">
+                  <path id="circlePath" d="M 60, 60 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0" fill="none" />
+                  <text fill="currentColor">
+                    <textPath href="#circlePath">
+                      TRONDHEIM BARBERSHOP • EST 2018 • SOLSIDEN &amp; MOHOLT •
+                    </textPath>
+                  </text>
+                </svg>
+              </div>
+            </div>
 
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg text-white/85 max-w-2xl leading-relaxed mb-8">
-            {t("hero.subtitle") as string}
-          </p>
+            {/* Quick Preview Card */}
+            <Reveal delay={0.2}>
+              <div className="bg-bg-card/90 border border-border-dark p-6 sm:p-8 rounded-lg shadow-2xl backdrop-blur-md">
+                <div className="flex items-center justify-between pb-4 mb-6 border-b border-border-dark">
+                  <span className="font-display font-bold uppercase tracking-wider text-xs sm:text-sm text-accent">
+                    Direkte Booking Uten Innlogging
+                  </span>
+                  <span className="text-[10px] uppercase tracking-widest text-text-muted bg-primary-light px-2 py-1 rounded font-display">
+                    Svar på 30s
+                  </span>
+                </div>
 
-          {/* CTA Pair */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
-            <a
-              href="#contact"
-              className="bg-[hsl(28_85%_52%)] hover:bg-[hsl(24_90%_45%)] text-[hsl(25_20%_8%)] font-display font-extrabold text-xl uppercase px-8 py-4 rounded transition-all shadow-lg text-center tracking-wider"
-            >
-              {t("hero.ctaPrimary") as string}
-            </a>
-            <a
-              href="#calculator"
-              className="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-display font-bold text-xl uppercase px-7 py-4 rounded transition-all text-center tracking-wider"
-            >
-              {t("hero.ctaSecondary") as string}
-            </a>
+                <div className="space-y-4 text-xs font-body">
+                  <div>
+                    <label className="block text-text-muted uppercase tracking-wider mb-2 font-display font-medium text-[11px]">
+                      Velg din nærmeste avdeling i Trondheim:
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <a
+                        href="#bestilling"
+                        className="p-3 rounded bg-primary-light hover:bg-accent/20 border border-border-dark hover:border-accent text-left transition-all group"
+                      >
+                        <div className="font-display font-bold uppercase text-text-light group-hover:text-accent">
+                          Solsiden
+                        </div>
+                        <div className="text-[11px] text-text-muted mt-0.5">Barbershop &amp; Barber</div>
+                      </a>
+
+                      <a
+                        href="#bestilling"
+                        className="p-3 rounded bg-primary-light hover:bg-accent/20 border border-border-dark hover:border-accent text-left transition-all group"
+                      >
+                        <div className="font-display font-bold uppercase text-text-light group-hover:text-accent">
+                          Moholt
+                        </div>
+                        <div className="text-[11px] text-text-muted mt-0.5">Salong &amp; Barber</div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <div className="text-text-muted mb-2 font-display text-[11px] uppercase tracking-wider">Mest populære valg:</div>
+                    <ul className="space-y-2 text-text-light font-medium">
+                      <li className="flex justify-between items-center py-1.5 px-3 bg-bg-dark/60 rounded border border-border-dark/40">
+                        <span>Herreklipp &amp; Styling</span>
+                        <span className="text-accent font-display tabular-nums">650 NOK</span>
+                      </li>
+                      <li className="flex justify-between items-center py-1.5 px-3 bg-bg-dark/60 rounded border border-border-dark/40">
+                        <span>Royal Hot Towel Shave</span>
+                        <span className="text-accent font-display tabular-nums">690 NOK</span>
+                      </li>
+                      <li className="flex justify-between items-center py-1.5 px-3 bg-bg-dark/60 rounded border border-border-dark/40">
+                        <span>Foilage Fargeteknikk</span>
+                        <span className="text-accent font-display tabular-nums">Fra 1 850 NOK</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <a
+                    href="#bestilling"
+                    className="block text-center bg-accent hover:bg-accent-hover text-bg-dark font-display font-bold uppercase text-xs py-3.5 rounded transition-colors tracking-wider mt-4 shadow-md"
+                  >
+                    Reserver Din Time Nå
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+
           </div>
 
-          {/* 3-Item Meta Strip with Hairline Separators */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-white/70 border-t border-white/10 pt-6 w-full">
-            <div className="flex flex-col">
-              <span className="text-[10px] uppercase font-bold text-[hsl(28_85%_52%)] tracking-wider">ГОДИНИ РОБОТИ</span>
-              <span className="font-medium text-white/90">Пн-Сб: 09:00 – 18:00</span>
-            </div>
-            <div className="flex flex-col sm:border-l sm:border-white/10 sm:pl-4">
-              <span className="text-[10px] uppercase font-bold text-[hsl(28_85%_52%)] tracking-wider">ЛОКАЦІЇ</span>
-              <span className="font-medium text-white/90">Moholt & Solsiden</span>
-            </div>
-            <div className="flex flex-col sm:border-l sm:border-white/10 sm:pl-4">
-              <span className="text-[10px] uppercase font-bold text-[hsl(28_85%_52%)] tracking-wider">РЕЙТИНГ GOOGLE</span>
-              <span className="font-medium text-white/90 tabular-nums">4.6/5.0 на базі 100+ відгуків</span>
-            </div>
-          </div>
         </div>
 
-        {/* Right Accent Card */}
-        <div className="lg:col-span-4 hidden lg:block">
-          <div className="bg-[hsl(25_15%_12%/0.9)] border border-[hsl(28_85%_52%/0.35)] backdrop-blur-md rounded-xl p-6 text-white shadow-2xl relative">
-            <div className="text-[10px] uppercase text-[hsl(28_85%_52%)] font-bold tracking-widest mb-2">
-              СПЕЦІАЛЬНА ПРОПОЗИЦІЯ
-            </div>
-            <h2 className="font-display font-bold text-3xl uppercase mb-3 leading-none">
-              КОМПЛЕКС БАРБЕР + ДОГЛЯД
-            </h2>
-            <p className="text-xs text-white/80 mb-4 leading-relaxed">
-              Чоловіча стрижка, гарячий рушник 65°C, моделювання бороди та масаж голови з серумом L'ANZA Neem.
+        {/* Flanking Mini-Copy Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 mt-12 border-t border-border-dark/40 text-xs text-text-muted font-body">
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-accent shrink-0 mt-1" />
+            <p className="leading-relaxed">
+              <strong className="text-text-light font-display uppercase tracking-wider block">Solsiden Barbershop</strong>
+              {String(t('hero.solsidenBrief'))}
             </p>
-            <div className="flex items-baseline justify-between mb-6 border-t border-b border-white/10 py-3">
-              <span className="text-xs text-white/60 uppercase font-bold tracking-wider">Фіксована ціна:</span>
-              <span className="font-display font-extrabold text-3xl text-[hsl(28_85%_52%)] tabular-nums">
-                750 NOK
-              </span>
-            </div>
-            <a
-              href="#contact"
-              className="block w-full text-center bg-white/10 hover:bg-[hsl(28_85%_52%)] text-white hover:text-[hsl(25_20%_8%)] font-display font-bold text-lg uppercase py-2.5 rounded transition-colors tracking-wider"
-            >
-              Забронювати цей комплекс
-            </a>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <span className="w-2 h-2 rounded-full bg-accent shrink-0 mt-1" />
+            <p className="leading-relaxed">
+              <strong className="text-text-light font-display uppercase tracking-wider block">Moholt Salong &amp; Barber</strong>
+              {String(t('hero.moholtBrief'))}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Hero Base Ticker & Scroll Cue */}
-      <div className="relative z-10 w-full mt-8 pt-4 border-t border-white/10">
-        <div className="overflow-hidden py-2 text-[11px] uppercase font-extrabold tracking-[0.2em] text-white/40 whitespace-nowrap">
-          <div className="animate-marquee inline-flex gap-8">
-            <span>MOHOLT — HERMAN KRAGS VEI 43</span>
-            <span className="text-[hsl(28_85%_52%)]">·</span>
-            <span>SOLSIDEN — TMV-KAIA 23</span>
-            <span className="text-[hsl(28_85%_52%)]">·</span>
-            <span>L'ANZA HEALING COLORCARE</span>
-            <span className="text-[hsl(28_85%_52%)]">·</span>
-            <span>KEUNE HAIRCOSMETICS</span>
-            <span className="text-[hsl(28_85%_52%)]">·</span>
-            <span>BEARBURYS BARBER CARE</span>
-            <span className="text-[hsl(28_85%_52%)]">·</span>
-            <span>MOHOLT — HERMAN KRAGS VEI 43</span>
-            <span className="text-[hsl(28_85%_52%)]">·</span>
-            <span>SOLSIDEN — TMV-KAIA 23</span>
-            <span className="text-[hsl(28_85%_52%)]">·</span>
-          </div>
-        </div>
-
-        {/* Scroll Cue (Classic Indicator physically below content) */}
-        <div className="flex flex-col items-center gap-1 mt-3 text-white/50">
-          <span className="text-[8px] uppercase tracking-[0.3em] font-bold text-white/70">SCROLL</span>
-          <div className="w-px h-5 bg-gradient-to-b from-[hsl(28_85%_52%)] to-transparent" />
-        </div>
+      {/* Scroll Cue Indicator */}
+      <div className="relative z-10 flex flex-col items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity mt-8">
+        <span className="text-[9px] font-display uppercase tracking-widest text-text-muted font-semibold">Scroll</span>
+        <div className="w-0.5 h-6 bg-gradient-to-b from-accent to-transparent animate-pulse" />
       </div>
+
     </section>
   );
 }

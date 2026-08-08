@@ -1,24 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: hsl(25 20% 8%);
-  --color-primary-soft: hsl(25 15% 14%);
+  --color-primary: hsl(20 18% 10%);
+  --color-primary-light: hsl(20 14% 15%);
   --color-accent: hsl(28 85% 52%);
-  --color-accent-hover: hsl(24 90% 45%);
-  --color-bg-dark: hsl(25 20% 7%);
-  --color-bg-light: hsl(35 25% 96%);
-  --color-bg-card: hsl(0 0% 100%);
-  --color-text-main: hsl(25 20% 12%);
-  --color-text-muted: hsl(25 10% 45%);
-  --color-text-light: hsl(35 20% 92%);
-  --font-display: 'Alumni Sans', sans-serif;
-  --font-body: 'Libre Franklin', sans-serif;
+  --color-accent-hover: hsl(28 90% 44%);
+  --color-accent-muted: hsl(28 50% 20%);
+  --color-bg-dark: hsl(20 20% 8%);
+  --color-bg-card: hsl(20 15% 12%);
+  --color-bg-paper: hsl(36 20% 95%);
+  --color-text-light: hsl(36 20% 92%);
+  --color-text-muted: hsl(20 10% 65%);
+  --color-border-dark: hsl(20 15% 20%);
+  
+  --font-display: 'Oswald', sans-serif;
+  --font-body: 'Barlow', sans-serif;
 }
 
 @layer base {
   html {
     font-size: 16px;
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
   }
   @media (max-width: 1920px) { html { font-size: 0.833333vw; } }
   @media (max-width: 1440px) { html { font-size: 1.111111vw; } }
@@ -26,54 +28,79 @@
   @media (max-width: 640px) { html { font-size: 4.444444vw; } }
 
   body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
     font-family: var(--font-body);
-    background-color: var(--color-bg-light);
-    color: var(--color-text-main);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, .font-display {
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-.img-fallback {
-  background: linear-gradient(135deg, hsl(25 15% 18%) 0%, hsl(25 20% 8%) 100%);
-  min-height: 200px;
-  border-radius: 8px;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
+/* Custom Utilities & Keyframes */
+@keyframes ticker {
+  0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-.animate-marquee {
+.animate-ticker {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: ticker 28s linear infinite;
 }
 
-.animate-marquee:hover {
+.animate-ticker:hover {
   animation-play-state: paused;
 }
 
-*:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.img-fallback {
+  background: linear-gradient(135deg, hsl(20 15% 14%) 0%, hsl(20 20% 8%) 100%);
+  min-height: 220px;
+  border-radius: 4px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(20 20% 8%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(20 15% 22%);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(28 85% 52%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
-  .animate-marquee {
-    animation: none !important;
-  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }

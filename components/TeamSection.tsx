@@ -1,57 +1,88 @@
 "use client";
 
-import { useLocale } from "@/lib/i18n";
+import { useLocale } from '@/lib/i18n';
+import { Reveal, Stagger, StaggerItem } from '@/components/motion';
+
+interface TeamMember {
+  name: string;
+  role: string;
+  desc: string;
+  loc?: string;
+}
 
 export default function TeamSection() {
   const { t } = useLocale();
-
-  const teamMembers = [
-    { name: "Jan Emil", role: "Daglig leder / Засновник", initials: "JE", exp: "8 років досвіду" },
-    { name: "Ragnhild Nordvik", role: "Головний колорист Foilage", initials: "RN", exp: "7 років досвіду" },
-    { name: "Daniel", role: "Старший барбер (Moholt)", initials: "D", exp: "6 років досвіду" },
-    { name: "Yana", role: "Спеціаліст жіночого залу", initials: "Y", exp: "5 років досвіду" },
-    { name: "Hamodi", role: "Майстер Knivbarbering", initials: "H", exp: "6 років досвіду" },
-    { name: "Austeja", role: "Спеціаліст нігтьового сервісу", initials: "A", exp: "4 роки досвіду" },
-  ];
+  const members = (t('team.members') as TeamMember[]) || [];
 
   return (
-    <section id="team" className="py-24 bg-[hsl(35_25%_96%)] text-[hsl(25_20%_12%)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-[0.3em] text-[hsl(28_85%_52%)] font-bold">
-            {t("team.kicker") as string}
-          </span>
-          <h2 className="font-display font-extrabold text-4xl sm:text-6xl text-[hsl(25_20%_8%)] mt-2 mb-4 leading-none">
-            {t("team.title") as string}
-          </h2>
-          <p className="text-base text-[hsl(25_10%_35%)]">
-            {t("team.subtitle") as string}
-          </p>
-        </div>
+    <section id="team" className="py-24 bg-bg-dark text-text-light scroll-mt-20 relative overflow-hidden">
+      
+      {/* Background Watermark Word */}
+      <div 
+        aria-hidden="true" 
+        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+      >
+        <span className="text-[18vw] font-display font-bold uppercase text-white/[0.02] leading-none whitespace-nowrap tracking-tighter">
+          TEAMET
+        </span>
+      </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {teamMembers.map((member, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-5 rounded-xl border border-[hsl(25_15%_88%)] text-center flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div>
-                <div className="w-16 h-16 rounded-full bg-[hsl(25_20%_8%)] text-[hsl(28_85%_52%)] font-display font-extrabold text-2xl flex items-center justify-center mb-3 mx-auto shadow-inner">
-                  {member.initials}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs uppercase tracking-widest text-accent font-display font-semibold">
+            {String(t('team.kicker'))}
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-bold font-display uppercase tracking-tight text-white mt-2 mb-4">
+            {String(t('team.title'))}
+          </h2>
+          <p className="text-text-muted text-base sm:text-lg font-body">
+            {String(t('team.subtitle'))}
+          </p>
+        </Reveal>
+
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {members.map((m, idx) => {
+            const initials = m.name
+              .split(' ')
+              .map((n) => n[0])
+              .join('')
+              .toUpperCase()
+              .slice(0, 2);
+
+            return (
+              <StaggerItem key={idx}>
+                <div className="bg-bg-card border border-border-dark p-6 rounded-lg flex items-start gap-5 hover:border-accent/50 transition-all h-full">
+                  {/* Monogram Avatar */}
+                  <div className="w-14 h-14 rounded bg-accent/15 border border-accent/40 flex items-center justify-center font-display font-bold text-xl text-accent shrink-0">
+                    {initials}
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="flex justify-between items-start">
+                      <h3 className="font-display font-bold uppercase text-lg text-white">
+                        {m.name}
+                      </h3>
+                      {m.loc && (
+                        <span className="text-[9px] font-display uppercase tracking-widest text-text-muted border border-border-dark px-1.5 py-0.5 rounded">
+                          {m.loc}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="text-xs uppercase font-display tracking-wider text-accent font-semibold mt-0.5 mb-2">
+                      {m.role}
+                    </div>
+                    <p className="text-text-muted text-xs font-body leading-relaxed">
+                      {m.desc}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-display font-bold text-xl text-[hsl(25_20%_8%)] leading-tight mb-1 uppercase">
-                  {member.name}
-                </h3>
-                <p className="text-[10px] text-[hsl(25_10%_45%)] font-extrabold uppercase tracking-wider mb-2">
-                  {member.role}
-                </p>
-              </div>
-              <div className="text-[10px] text-[hsl(28_85%_52%)] font-bold uppercase tracking-wider border-t border-[hsl(25_15%_90%)] pt-2 w-full mt-3 tabular-nums">
-                {member.exp}
-              </div>
-            </div>
-          ))}
-        </div>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
+
       </div>
     </section>
   );

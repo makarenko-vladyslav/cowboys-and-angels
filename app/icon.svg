@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="6" fill="hsl(28 85% 52%)" />
-  <text x="16" y="22" font-family="'Alumni Sans', sans-serif" font-weight="800" font-size="22" fill="hsl(25 20% 8%)" text-anchor="middle">CA</text>
+  <path d="M9 22L23 10M9 10L23 22" stroke="hsl(20 20% 8%)" stroke-width="3" stroke-linecap="round" />
+  <circle cx="16" cy="16" r="3" fill="hsl(20 20% 8%)" />
 </svg>
