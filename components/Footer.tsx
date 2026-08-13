@@ -1,117 +1,105 @@
 "use client";
 
+import React from 'react';
 import { useLocale } from '@/lib/i18n';
 
 export default function Footer() {
   const { t } = useLocale();
 
+  const legal = (t('footer.legal') as string) || '© 2026 Cowboys and Angels AS. Alle rettigheter reservert.';
+  const studioCredit = (t('footer.studioCredit') as string) || 'Utviklet av Студія Тест';
+
   return (
-    <footer className="bg-bg-dark text-text-light pt-20 pb-12 border-t border-border-dark relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-border-dark">
-          
-          {/* Brand Info */}
-          <div className="md:col-span-5 space-y-4">
-            <a href="#" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded bg-accent flex items-center justify-center text-bg-dark font-display font-bold text-xl">
-                C&amp;A
-              </div>
-              <span className="font-display font-bold text-2xl uppercase tracking-wider text-white">
-                Cowboys <span className="text-accent">&amp;</span> Angels
-              </span>
-            </a>
-
-            <p className="text-text-muted text-xs sm:text-sm leading-relaxed max-w-sm font-body">
-              {String(t('footer.tagline'))}
+    <footer className="bg-dark-bg border-t border-dark-border pt-16 pb-12 text-paper relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-dark-border">
+          {/* Col 1: Logo & Tagline */}
+          <div className="lg:col-span-5 flex flex-col items-start gap-4">
+            <span className="font-display text-2xl font-bold uppercase text-copper tracking-wider block mb-2">
+              COWBOYS &amp; ANGELS
+            </span>
+            <p className="text-xs text-paper-muted leading-relaxed max-w-sm">
+              Cowboys and Angels er Trondheims ledende frisørsalong og barbershop med to unike lokasjoner på Moholt og Solsiden. Spesialister på herreklipp, knivbarbering og Foilage fargeteknikk.
             </p>
-
-            <p className="text-xs text-accent font-display uppercase tracking-wider">
-              {String(t('footer.brandVoice'))}
-            </p>
-
-            <div className="flex gap-4 text-xs font-display font-bold uppercase tracking-wider pt-2">
+            <div className="flex gap-4 mt-2">
               <a
                 href="https://www.facebook.com/cowboysandangelsmoholt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-text-muted hover:text-accent transition-colors"
+                className="text-xs font-mono text-copper hover:underline uppercase py-2 inline-flex items-center"
               >
-                Facebook ↗
+                FACEBOOK ↗
               </a>
               <a
                 href="https://www.instagram.com/cowboysandangels_moholt/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-text-muted hover:text-accent transition-colors"
+                className="text-xs font-mono text-copper hover:underline uppercase py-2 inline-flex items-center"
               >
-                Instagram ↗
+                INSTAGRAM ↗
               </a>
             </div>
           </div>
 
-          {/* Quick Links Column */}
-          <div className="md:col-span-3 space-y-3">
-            <div className="font-display font-bold uppercase text-xs tracking-widest text-accent">
-              {String(t('footer.quickLinks'))}
-            </div>
-            <ul className="space-y-2 text-xs font-body text-text-muted">
-              <li><a href="#konsept" className="hover:text-white transition-colors">Konsept &amp; Filosofi</a></li>
-              <li><a href="#tjenester" className="hover:text-white transition-colors">Prisliste &amp; Tjenester</a></li>
-              <li><a href="#kalkulator" className="hover:text-white transition-colors">Priskalkulator</a></li>
-              <li><a href="#galleri" className="hover:text-white transition-colors">Bildegalleri</a></li>
-              <li><a href="#butikk" className="hover:text-white transition-colors">Nettbutikk</a></li>
-              <li><a href="#team" className="hover:text-white transition-colors">Møt Teamet</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">Spørsmål og Svar</a></li>
-              <li><a href="#avdelinger" className="hover:text-white transition-colors">Solsiden &amp; Moholt</a></li>
-            </ul>
+          {/* Col 2: Moholt Hub */}
+          <div className="lg:col-span-3">
+            <h4 className="font-display text-base font-bold uppercase text-copper mb-3">
+              Moholt Salong
+            </h4>
+            <p className="text-xs text-paper-muted leading-relaxed mb-1">
+              Moholt Allé 1, 7050 Trondheim
+            </p>
+            <p className="text-xs text-paper-muted leading-relaxed mb-2">
+              Man–Fre: 09:00–18:00
+              <br />
+              Lør: 09:00–16:00
+            </p>
+            <a href="tel:+4773512000" className="text-xs font-mono text-copper hover:underline block mt-2 py-2 inline-flex items-center">
+              +47 73 51 20 00
+            </a>
           </div>
 
-          {/* Contact Details Column */}
-          <div className="md:col-span-4 space-y-3">
-            <div className="font-display font-bold uppercase text-xs tracking-widest text-accent">
-              {String(t('footer.contactHeader'))}
-            </div>
-            <div className="text-xs text-text-muted space-y-2 font-body">
-              <p className="text-white font-bold font-display text-sm">{String(t('footer.phone'))}</p>
-              <p className="font-display">{String(t('footer.email'))}</p>
-              <div className="pt-2 space-y-1">
-                <p className="text-text-light font-medium">Solsiden Barbershop:</p>
-                <p>Beddingen 8, 7014 Trondheim</p>
-              </div>
-              <div className="pt-2 space-y-1">
-                <p className="text-text-light font-medium">Moholt Salong &amp; Barber:</p>
-                <p>Brøsetveien 168, 7050 Trondheim</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Oversized Brand Typography Banner Bleeding Off Edge */}
-        <div className="py-12 text-center select-none overflow-hidden">
-          <span className="font-display font-bold text-5xl sm:text-8xl lg:text-[11rem] uppercase tracking-tighter text-border-dark/30 block leading-none whitespace-nowrap">
-            COWBOYS &amp; ANGELS
-          </span>
-        </div>
-
-        {/* Legal & Developer Credit */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border-dark/60 text-xs text-text-muted font-body">
-          <div>{String(t('footer.copyright'))}</div>
-          
-          <div>
-            <a
-              href="https://makarich.framer.website"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-muted hover:text-accent underline transition-colors"
-            >
-              {String(t('footer.studioCredit'))}
+          {/* Col 3: Solsiden Hub */}
+          <div className="lg:col-span-4">
+            <h4 className="font-display text-base font-bold uppercase text-copper mb-3">
+              Solsiden Barbershop
+            </h4>
+            <p className="text-xs text-paper-muted leading-relaxed mb-1">
+              Beddingen 10, Solsiden, 7014 Trondheim
+            </p>
+            <p className="text-xs text-paper-muted leading-relaxed mb-2">
+              Man–Fre: 10:00–19:00
+              <br />
+              Lør: 10:00–17:00
+            </p>
+            <a href="tel:+4773512000" className="text-xs font-mono text-copper hover:underline block mt-2 py-2 inline-flex items-center">
+              +47 73 51 20 00
             </a>
           </div>
         </div>
 
+        {/* Giant Full-Width Brand Wordmark Bleeding Off Bottom Edge */}
+        <div className="py-10 border-b border-dark-border/40 text-center select-none overflow-hidden">
+          <span className="font-display text-5xl sm:text-8xl md:text-[10vw] font-bold uppercase tracking-tighter text-dark-surface/80 block leading-none">
+            COWBOYS &amp; ANGELS
+          </span>
+        </div>
+
+        {/* Legal Row & Mandatory Studio Credit */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-paper-muted">
+          <span>{legal}</span>
+          <span className="text-center sm:text-right">
+            Designet for presisjon i Trondheim. ·{' '}
+            <a
+              href="https://makarich.framer.website"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-copper hover:underline font-bold border-b border-copper/30 pb-0.5 py-2 inline-flex items-center"
+            >
+              {studioCredit}
+            </a>
+          </span>
+        </div>
       </div>
     </footer>
   );

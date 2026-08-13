@@ -1,16 +1,21 @@
 {
   "currency": "NOK",
   "basePrices": {
-    "beard": 450,
-    "menCut": 650,
-    "womenCut": 890,
-    "foilage": 1850,
-    "royalShave": 690,
-    "fullPackage": 1100
+    "herreklipp": 890,
+    "dameklipp": 890,
+    "skjeggtrim": 575,
+    "knivbarbering": 720,
+    "foilage": 1500,
+    "fullfarge": 1500,
+    "kurBehandling": 400
   },
-  "addons": {
-    "spaCare": 350,
-    "grayCamouflage": 320,
-    "toning": 450
-  }
+  "discounts": {
+    "student": 0.10,
+    "senior": 0.10,
+    "laerling": 0.30
+  },
+  "locations": [
+    { "id": "moholt", "name": "Moholt (Salong & Barbershop)", "address": "Moholt Allé 1, Trondheim" },
+    { "id": "solsiden", "name": "Solsiden (Exclusiv Barbershop)", "address": "Beddingen 10, Solsiden, Trondheim" }
+  ]
 }
