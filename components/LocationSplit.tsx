@@ -6,8 +6,8 @@ import { Reveal } from "./motion";
 export default function LocationSplit() {
   const { t } = useLocale();
 
-  const moholtImg = "https://static.wixstatic.com/media/b0aa65_ab4b3f643b7549a08bb9d8b7dc1f1289~mv2.jpg/v1/fill/w_980,h_576,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b0aa65_ab4b3f643b7549a08bb9d8b7dc1f1289~mv2.jpg";
-  const solsidenImg = "https://static.wixstatic.com/media/b0aa65_e52759c6217c4d20943414c8a111e51a~mv2.jpg/v1/fill/w_576,h_720,al_c,lg_1,q_85,enc_avif,quality_auto/b0aa65_e52759c6217c4d20943414c8a111e51a~mv2.jpg";
+  const moholtImg = "/cowboys-and-angels/media/286be2748d92bf68.jpg/v1/fill/w_980,h_576,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b0aa65_ab4b3f643b7549a08bb9d8b7dc1f1289~mv2.jpg";
+  const solsidenImg = "/cowboys-and-angels/media/73ffc045d040bbd4.jpg/v1/fill/w_576,h_720,al_c,lg_1,q_85,enc_avif,quality_auto/b0aa65_e52759c6217c4d20943414c8a111e51a~mv2.jpg";
 
   return (
     <section id="locations" className="py-24 bg-dark-bg relative overflow-hidden scroll-mt-20 border-t border-copper/20">

@@ -5,7 +5,7 @@ import { useLocale } from "@/lib/i18n";
 export default function Footer() {
   const { t } = useLocale();
 
-  const logoUrl = "https://static.wixstatic.com/media/b0aa65_d3b94b7050064f518aadb26445116f9c~mv2.png/v1/fill/w_213,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CA_logo_copper.png";
+  const logoUrl = "/cowboys-and-angels/media/217ee0c8d84a6632.png/v1/fill/w_213,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CA_logo_copper.png";
 
   return (
     <footer className="bg-dark-bg border-t border-copper/20 pt-16 pb-12 text-text-light/80 relative">

@@ -6,8 +6,8 @@ import { Reveal } from "./motion";
 export default function CraftAdvantages() {
   const { t } = useLocale();
 
-  const photo1 = "https://static.wixstatic.com/media/973894_4b7c1535cf934543b09fe90984f0ee43~mv2.jpg/v1/fill/w_442,h_589,fp_0.51_0.38,q_90,enc_avif,quality_auto/973894_4b7c1535cf934543b09fe90984f0ee43~mv2.jpg";
-  const photo2 = "https://static.wixstatic.com/media/973894_3dd7396a08554a67a56a59c2775336ca~mv2.jpg/v1/fill/w_442,h_589,fp_0.44_0.53,q_90,enc_avif,quality_auto/973894_3dd7396a08554a67a56a59c2775336ca~mv2.jpg";
+  const photo1 = "/cowboys-and-angels/media/e60ba6cd1b9f05b4.jpg/v1/fill/w_442,h_589,fp_0.51_0.38,q_90,enc_avif,quality_auto/973894_4b7c1535cf934543b09fe90984f0ee43~mv2.jpg";
+  const photo2 = "/cowboys-and-angels/media/a9d41c60c69ccbca.jpg/v1/fill/w_442,h_589,fp_0.44_0.53,q_90,enc_avif,quality_auto/973894_3dd7396a08554a67a56a59c2775336ca~mv2.jpg";
 
   const advantages = (t("craft.items") as Array<{ title: string; desc: string }>) || [];
 

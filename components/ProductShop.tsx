@@ -9,9 +9,9 @@ export default function ProductShop() {
   const rawProducts = (t("shop.products") as Array<{ name: string; desc: string; tag: string }>) || [];
 
   const images = [
-    "https://static.wixstatic.com/media/973894_4d8cbed4ea744a8087f047896d4aabc3~mv2.webp/v1/crop/x_0,y_67,w_500,h_491,q_80,enc_auto/973894_4d8cbed4ea744a8087f047896d4aabc3~mv2.webp",
-    "https://static.wixstatic.com/media/973894_d0a9efdba4e7459989f9612b17e9c28d~mv2.png/v1/crop/x_0,y_0,w_709,h_450,q_85,enc_auto/973894_d0a9efdba4e7459989f9612b17e9c28d~mv2.png",
-    "https://static.wixstatic.com/media/973894_cbcf7ada9f8c487493d3b3941196523e~mv2.jpg/v1/crop/x_0,y_0,w_596,h_447,q_80,enc_auto/973894_cbcf7ada9f8c487493d3b3941196523e~mv2.jpg"
+    "/cowboys-and-angels/media/9b85fe8ba0e60630.webp/v1/crop/x_0,y_67,w_500,h_491,q_80,enc_auto/973894_4d8cbed4ea744a8087f047896d4aabc3~mv2.webp",
+    "/cowboys-and-angels/media/ddc7ba807b65cde3.png/v1/crop/x_0,y_0,w_709,h_450,q_85,enc_auto/973894_d0a9efdba4e7459989f9612b17e9c28d~mv2.png",
+    "/cowboys-and-angels/media/f604eb26a39e670b.jpg/v1/crop/x_0,y_0,w_596,h_447,q_80,enc_auto/973894_cbcf7ada9f8c487493d3b3941196523e~mv2.jpg"
   ];
 
   const products = rawProducts.map((p, i) => ({

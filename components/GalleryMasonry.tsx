@@ -10,14 +10,14 @@ export default function GalleryMasonry() {
   const rawTags = (t("gallery.items") as Array<{ tag: string }>) || [];
 
   const images = [
-    { url: "https://static.wixstatic.com/media/973894_4b7c1535cf934543b09fe90984f0ee43~mv2.jpg/v1/fill/w_442,h_589,fp_0.51_0.38,q_90,enc_avif,quality_auto/973894_4b7c1535cf934543b09fe90984f0ee43~mv2.jpg", tag: rawTags[0]?.tag || "Moholt Salong" },
-    { url: "https://static.wixstatic.com/media/973894_3dd7396a08554a67a56a59c2775336ca~mv2.jpg/v1/fill/w_442,h_589,fp_0.44_0.53,q_90,enc_avif,quality_auto/973894_3dd7396a08554a67a56a59c2775336ca~mv2.jpg", tag: rawTags[1]?.tag || "Foilage Balayage" },
-    { url: "https://static.wixstatic.com/media/973894_b0dc977af7f4442398681c008281315c~mv2.jpg/v1/fill/w_442,h_589,fp_0.57_0.56,q_90,enc_avif,quality_auto/973894_b0dc977af7f4442398681c008281315c~mv2.jpg", tag: rawTags[2]?.tag || "Solsiden Barbershop" },
-    { url: "https://static.wixstatic.com/media/973894_5b010104c11b4317979a8959a6ebf3a8~mv2.jpg/v1/fill/w_442,h_589,fp_0.64_0.49,q_90,enc_avif,quality_auto/973894_5b010104c11b4317979a8959a6ebf3a8~mv2.jpg", tag: rawTags[3]?.tag || "Skjeggtrim & Kniv" },
-    { url: "https://static.wixstatic.com/media/973894_14733a7245d04b8b845a45e8415e5584~mv2.jpg/v1/fill/w_442,h_589,q_90,enc_avif,quality_auto/973894_14733a7245d04b8b845a45e8415e5584~mv2.jpg", tag: rawTags[4]?.tag || "Skarpe Linjer" },
-    { url: "https://static.wixstatic.com/media/973894_314ea4e82dff4c38b1e91a230562457f~mv2.jpg/v1/fill/w_442,h_589,fp_0.24_0.6,q_90,enc_avif,quality_auto/973894_314ea4e82dff4c38b1e91a230562457f~mv2.jpg", tag: rawTags[5]?.tag || "Farge & Glans" },
-    { url: "https://static.wixstatic.com/media/973894_e38de253b652467890683b9212aca318~mv2.jpg/v1/fill/w_442,h_589,q_90,enc_avif,quality_auto/973894_e38de253b652467890683b9212aca318~mv2.jpg", tag: rawTags[6]?.tag || "Herreklipp" },
-    { url: "https://static.wixstatic.com/media/973894_cd5924039a46493ca9a4f4d21e5118e4~mv2.jpg/v1/fill/w_442,h_589,fp_0.49_0.44,q_90,enc_avif,quality_auto/973894_cd5924039a46493ca9a4f4d21e5118e4~mv2.jpg", tag: rawTags[7]?.tag || "Styling Finish" },
+    { url: "/cowboys-and-angels/media/e60ba6cd1b9f05b4.jpg/v1/fill/w_442,h_589,fp_0.51_0.38,q_90,enc_avif,quality_auto/973894_4b7c1535cf934543b09fe90984f0ee43~mv2.jpg", tag: rawTags[0]?.tag || "Moholt Salong" },
+    { url: "/cowboys-and-angels/media/a9d41c60c69ccbca.jpg/v1/fill/w_442,h_589,fp_0.44_0.53,q_90,enc_avif,quality_auto/973894_3dd7396a08554a67a56a59c2775336ca~mv2.jpg", tag: rawTags[1]?.tag || "Foilage Balayage" },
+    { url: "/cowboys-and-angels/media/4e5a060ed45775f5.jpg/v1/fill/w_442,h_589,fp_0.57_0.56,q_90,enc_avif,quality_auto/973894_b0dc977af7f4442398681c008281315c~mv2.jpg", tag: rawTags[2]?.tag || "Solsiden Barbershop" },
+    { url: "/cowboys-and-angels/media/c857a4c1bf4fa165.jpg/v1/fill/w_442,h_589,fp_0.64_0.49,q_90,enc_avif,quality_auto/973894_5b010104c11b4317979a8959a6ebf3a8~mv2.jpg", tag: rawTags[3]?.tag || "Skjeggtrim & Kniv" },
+    { url: "/cowboys-and-angels/media/ec95fb03ea8443d5.jpg/v1/fill/w_442,h_589,q_90,enc_avif,quality_auto/973894_14733a7245d04b8b845a45e8415e5584~mv2.jpg", tag: rawTags[4]?.tag || "Skarpe Linjer" },
+    { url: "/cowboys-and-angels/media/db5a85a702e09c33.jpg/v1/fill/w_442,h_589,fp_0.24_0.6,q_90,enc_avif,quality_auto/973894_314ea4e82dff4c38b1e91a230562457f~mv2.jpg", tag: rawTags[5]?.tag || "Farge & Glans" },
+    { url: "/cowboys-and-angels/media/ae0f52c38ca08357.jpg/v1/fill/w_442,h_589,q_90,enc_avif,quality_auto/973894_e38de253b652467890683b9212aca318~mv2.jpg", tag: rawTags[6]?.tag || "Herreklipp" },
+    { url: "/cowboys-and-angels/media/738ac470cbdcb1c6.jpg/v1/fill/w_442,h_589,fp_0.49_0.44,q_90,enc_avif,quality_auto/973894_cd5924039a46493ca9a4f4d21e5118e4~mv2.jpg", tag: rawTags[7]?.tag || "Styling Finish" },
   ];
 
   return (
