@@ -1,88 +1,65 @@
 "use client";
-
-import React from 'react';
-import { useLocale } from '@/lib/i18n';
-import { Carousel } from '@/components/motion';
-
-const reviews = [
-  {
-    quote: "Beste frisøropplevelsen i Trondheim! Yana på Moholt reddet håret mitt etter mislykket bleking andre steder. Foilage-teknikken hennes gir et fantastisk naturlig fargespill.",
-    author: "Ingrid M.",
-    descriptor: "Fast kunde på Moholt siden 2019",
-    hub: "Moholt Salong",
-    service: "Foilage & Balayage"
-  },
-  {
-    quote: "Herreklippen og skjeggtrimmen med kniv hos Daniel på Solsiden var førsteklasses. Varme omslag, skarpe konturer og topp service. Kommer garantert tilbake!",
-    author: "Kristian B.",
-    descriptor: "Fast kunde på Solsiden siden 2020",
-    hub: "Solsiden Barbershop",
-    service: "Klipp & Skjegg Pakke"
-  },
-  {
-    quote: "Fantastisk atmosfære! Som student setter jeg stor pris på 10% studentrabatt og at prisene er helt tydelige før man setter seg i stolen.",
-    author: "Sander H.",
-    descriptor: "Student ved NTNU Gløshaugen",
-    hub: "Moholt Salong",
-    service: "Herreklipp"
-  },
-  {
-    quote: "Anbefaler L’Anza-produktene de solgte meg. Fargen har holdt seg like strålende i ukevis etter hettestriper og tonering.",
-    author: "Camilla T.",
-    descriptor: "Fargekunde på Moholt",
-    hub: "Moholt Salong",
-    service: "Hårfarging & Pleie"
-  }
-];
+import React from "react";
+import { useLocale } from "@/lib/i18n";
+import { Carousel } from "./motion";
 
 export default function Testimonials() {
   const { t } = useLocale();
 
+  const reviews = (t("testimonials.reviews") as Array<{ name: string; role: string; text: string; rating: string }>) || [];
+
   return (
-    <section className="py-20 bg-dark-bg relative">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-mono uppercase tracking-widest text-copper block mb-2">
-            EKTE OMTALER FRA TRONDHEIM
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold uppercase tracking-tight text-white mb-3">
-            Kundeerfaringer &amp; Vurderinger
+    <section className="py-24 bg-dark-bg border-t border-copper/20 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="text-xs font-display uppercase tracking-widest text-copper font-bold mb-2">
+            {String(t("testimonials.kicker"))}
+          </p>
+          <h2 className="text-3xl sm:text-5xl font-display font-bold text-white uppercase tracking-tight mb-2">
+            {String(t("testimonials.title"))}
           </h2>
-          <p className="text-sm font-mono text-copper">
-            4.9 / 5.0 · Google · over 580 verifiserte anmeldelser
+          <p className="text-xs font-display uppercase tracking-widest text-copper-light">
+            {String(t("testimonials.subtitle"))}
           </p>
         </div>
 
-        {/* Carousel with Oversized Quote Mark */}
+        {/* Featured Large Pull Quote */}
+        <div className="bg-dark-card border border-copper/30 p-8 sm:p-12 mb-12 rounded-sm text-center relative max-w-4xl mx-auto">
+          <span className="text-copper/20 font-serif text-8xl absolute top-2 left-6 leading-none select-none pointer-events-none">
+            «
+          </span>
+          <blockquote className="text-lg sm:text-2xl font-serif italic text-white leading-relaxed mb-6 relative z-10">
+            «{reviews[0]?.text || ""}»
+          </blockquote>
+          <div className="text-xs font-display uppercase tracking-widest text-copper-light">
+            {reviews[0]?.name} — {reviews[0]?.role}
+          </div>
+        </div>
+
+        {/* Carousel for all reviews */}
         <Carousel>
           {reviews.map((rev, idx) => (
-            <div
-              key={idx}
-              className="p-8 sm:p-12 rounded-lg bg-dark-surface border border-copper/30 text-center max-w-3xl mx-auto relative"
-            >
-              {/* Oversized Quote Mark */}
-              <span className="font-serif text-7xl font-bold text-copper/20 absolute top-4 left-6 pointer-events-none select-none">
-                “
-              </span>
+            <div key={idx} className="bg-dark-card p-6 rounded-sm border border-copper/20 h-full flex flex-col justify-between">
+              <div>
+                <div className="flex justify-between items-center mb-4 text-xs font-display">
+                  <span className="text-amber-gold font-bold">{rev.rating}</span>
+                  <span className="text-text-light/40 uppercase tracking-wider text-[10px]">{String(t("testimonials.verified"))}</span>
+                </div>
+                <p className="text-xs sm:text-sm text-text-light/80 font-body italic mb-6 leading-relaxed">
+                  "{rev.text}"
+                </p>
+              </div>
 
-              <p className="font-serif italic text-lg sm:text-2xl text-paper mb-6 leading-relaxed relative z-10">
-                "{rev.quote}"
-              </p>
-
-              <div className="flex flex-col items-center">
-                <span className="font-display text-lg font-bold uppercase text-white">
-                  {rev.author}
-                </span>
-                <span className="text-xs text-paper-muted mb-1">
-                  {rev.descriptor}
-                </span>
-                <span className="text-xs font-mono text-copper">
-                  {rev.service} · {rev.hub}
-                </span>
+              <div className="border-t border-copper/10 pt-4">
+                <div className="font-display font-bold text-white text-xs uppercase">{rev.name}</div>
+                <div className="text-[11px] text-copper-light font-body mt-0.5">{rev.role}</div>
               </div>
             </div>
           ))}
         </Carousel>
+
       </div>
     </section>
   );

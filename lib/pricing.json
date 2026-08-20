@@ -1,21 +1,23 @@
 {
   "currency": "NOK",
-  "basePrices": {
-    "herreklipp": 890,
-    "dameklipp": 890,
-    "skjeggtrim": 575,
-    "knivbarbering": 720,
-    "foilage": 1500,
-    "fullfarge": 1500,
-    "kurBehandling": 400
+  "estimationLogic": "sum",
+  "baseServices": {
+    "herreklipp": { "name": "Cowboy Herreklipp", "price": 870, "duration": "45 min" },
+    "dameklipp": { "name": "Angel Klipp Dame", "price": 890, "duration": "60 min" },
+    "skjeggtrim": { "name": "Skjeggtrim med kniv", "price": 720, "duration": "30 min" },
+    "klipp_skjegg": { "name": "Hårklipp & Skjegg Pakke", "price": 1300, "duration": "75 min" },
+    "foilage": { "name": "Foilage / Balayage Farge", "price": 1500, "duration": "120+ min" },
+    "helbarbering": { "name": "Helbarbering med Kniv", "price": 660, "duration": "45 min" }
+  },
+  "addons": {
+    "wash": { "name": "Luksus Vask & Hodebunnsmassasje", "price": 120 },
+    "toning": { "name": "Glans / Tonering", "price": 350 },
+    "bryn": { "name": "Form & Farge Bryn", "price": 535 },
+    "spa": { "name": "Nærende Hårkur / SPA", "price": 400 }
   },
   "discounts": {
     "student": 0.10,
     "senior": 0.10,
     "laerling": 0.30
-  },
-  "locations": [
-    { "id": "moholt", "name": "Moholt (Salong & Barbershop)", "address": "Moholt Allé 1, Trondheim" },
-    { "id": "solsiden", "name": "Solsiden (Exclusiv Barbershop)", "address": "Beddingen 10, Solsiden, Trondheim" }
-  ]
+  }
 }

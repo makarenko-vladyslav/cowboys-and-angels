@@ -1,223 +1,193 @@
 "use client";
-
-import React, { useState } from 'react';
-import { useLocale } from '@/lib/i18n';
-import { Reveal } from '@/components/motion';
+import React, { useState } from "react";
+import { useLocale } from "@/lib/i18n";
+import pricingData from "@/lib/pricing.json";
+import { Reveal } from "./motion";
 
 export default function Calculator() {
   const { t } = useLocale();
 
-  const [location, setLocation] = useState<'moholt' | 'solsiden'>('moholt');
-  const [serviceType, setServiceType] = useState<'klipp' | 'skjegg' | 'pakke' | 'foilage'>('klipp');
-  const [discount, setDiscount] = useState<'none' | 'student' | 'laerling'>('none');
-  const [addWash, setAddWash] = useState(true);
+  const [selectedBase, setSelectedBase] = useState<keyof typeof pricingData.baseServices>("herreklipp");
+  const [addons, setAddons] = useState<Record<string, boolean>>({
+    wash: false,
+    toning: false,
+    bryn: false,
+    spa: false,
+  });
+  const [discountType, setDiscountType] = useState<"none" | "student" | "laerling">("none");
 
-  // Price calculation logic using real numbers from brief
-  let basePrice = 890;
-  let estMinutes = 45;
+  const toggleAddon = (key: string) => {
+    setAddons((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
-  if (serviceType === 'klipp') {
-    basePrice = location === 'solsiden' ? 870 : 890;
-    estMinutes = 45;
-  } else if (serviceType === 'skjegg') {
-    basePrice = 720;
-    estMinutes = 30;
-  } else if (serviceType === 'pakke') {
-    basePrice = 1300;
-    estMinutes = 75;
-  } else if (serviceType === 'foilage') {
-    basePrice = 1500;
-    estMinutes = 120;
+  const baseObj = pricingData.baseServices[selectedBase];
+  let total = baseObj.price;
+
+  Object.keys(addons).forEach((key) => {
+    if (addons[key] && key in pricingData.addons) {
+      total += pricingData.addons[key as keyof typeof pricingData.addons].price;
+    }
+  });
+
+  if (discountType === "student") {
+    total = Math.round(total * (1 - pricingData.discounts.student));
+  } else if (discountType === "laerling") {
+    total = Math.round(total * (1 - pricingData.discounts.laerling));
   }
 
-  if (addWash && serviceType !== 'pakke') {
-    basePrice += 120;
-    estMinutes += 15;
-  }
-
-  let finalPrice = basePrice;
-  if (discount === 'student') finalPrice = Math.round(basePrice * 0.9);
-  if (discount === 'laerling') finalPrice = Math.round(basePrice * 0.7);
-
-  const locationLabel = (t('calculator.locationLabel') as string) || 'Velg din preferred salong:';
-  const moholtSalong = (t('calculator.moholtSalong') as string) || 'Moholt Salong';
-  const moholtAddress = (t('calculator.moholtAddress') as string) || 'Moholt Allé 1';
-  const solsidenBarbershop = (t('calculator.solsidenBarbershop') as string) || 'Solsiden Barbershop';
-  const solsidenAddress = (t('calculator.solsidenAddress') as string) || 'Beddingen 10';
-  const estimatePriceText = (t('calculator.estimatePrice') as string) || 'Estimert Samlet Pris:';
-  const currencyLabel = (t('calculator.currency') as string) || 'NOK';
-  const estimateDurationText = (t('calculator.estimateDuration') as string) || 'Beregnet Tidsbruk:';
+  const money = (n: number) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
 
   return (
-    <section id="kalkulator" className="py-20 bg-dark-surface border-y border-dark-border relative">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-mono uppercase tracking-widest text-copper block mb-2">
-            {(t('calculator.eyebrow') as string) || 'INTERAKTIV BEREGNING'}
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold uppercase tracking-tight text-white mb-3">
-            {(t('calculator.title') as string) || 'Beregn Tid & Pris For Din Visitt'}
+    <section id="calculator" className="py-24 bg-dark-bg scroll-mt-20 border-t border-copper/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <p className="text-xs font-display uppercase tracking-widest text-copper font-bold mb-2">
+            {String(t("calculator.kicker"))}
+          </p>
+          <h2 className="text-3xl sm:text-5xl font-display font-bold text-white uppercase tracking-tight mb-4">
+            {String(t("calculator.title"))}
           </h2>
-          <p className="text-sm text-paper-muted">
-            {(t('calculator.subtitle') as string) || 'Velg salong og behandling for umiddelbart estimat.'}
+          <p className="text-xs sm:text-sm text-text-light/70 font-body">
+            {String(t("calculator.subtitle"))}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-dark-bg p-6 sm:p-8 rounded-lg border border-dark-border shadow-2xl">
-          {/* Controls Column */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            {/* 1. Location Selection */}
-            <div>
-              <label className="block text-xs font-mono uppercase text-copper mb-2">
-                {locationLabel}
-              </label>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setLocation('moholt')}
-                  className={`p-3 text-left rounded border text-xs font-semibold uppercase tracking-wider transition-all ${
-                    location === 'moholt'
-                      ? 'bg-copper text-white border-copper'
-                      : 'bg-dark-surface text-paper-muted border-dark-border hover:border-copper/50'
-                  }`}
-                >
-                  <span className="block font-bold">{moholtSalong}</span>
-                  <span className="text-[10px] opacity-80 font-normal lowercase block">{moholtAddress}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setLocation('solsiden')}
-                  className={`p-3 text-left rounded border text-xs font-semibold uppercase tracking-wider transition-all ${
-                    location === 'solsiden'
-                      ? 'bg-copper text-white border-copper'
-                      : 'bg-dark-surface text-paper-muted border-dark-border hover:border-copper/50'
-                  }`}
-                >
-                  <span className="block font-bold">{solsidenBarbershop}</span>
-                  <span className="text-[10px] opacity-80 font-normal lowercase block">{solsidenAddress}</span>
-                </button>
+        <Reveal direction="up">
+          <div className="max-w-4xl mx-auto bg-dark-card border border-copper/30 rounded-sm p-6 sm:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            {/* Options Column */}
+            <div className="lg:col-span-7 space-y-6">
+              <div>
+                <label className="block text-xs font-display uppercase tracking-widest text-copper-light mb-3">
+                  {String(t("calculator.step1"))}
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {(Object.keys(pricingData.baseServices) as Array<keyof typeof pricingData.baseServices>).map((key) => {
+                    const item = pricingData.baseServices[key];
+                    const active = selectedBase === key;
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => setSelectedBase(key)}
+                        className={`text-left p-3.5 rounded-sm border transition-all ${
+                          active
+                            ? "bg-copper/20 border-copper text-white shadow-md"
+                            : "bg-dark-bg border-copper/10 text-text-light/70 hover:border-copper/30"
+                        }`}
+                      >
+                        <div className="text-xs font-display font-bold uppercase">{item.name}</div>
+                        <div className="text-[11px] font-mono text-copper-light mt-1">{money(item.price)} {String(t("calculator.currency_unit"))} ({item.duration})</div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            {/* 2. Service Selection */}
-            <div>
-              <label className="block text-xs font-mono uppercase text-copper mb-2">
-                2. Velg Behandling
-              </label>
-              <div className="grid grid-cols-2 gap-2.5">
-                {[
-                  { id: 'klipp', label: 'Herreklipp / Dameklipp' },
-                  { id: 'skjegg', label: 'Skjeggtrim & Kniv' },
-                  { id: 'pakke', label: 'Klipp & Skjegg Pakke' },
-                  { id: 'foilage', label: 'Foilage / Farging' },
-                ].map((s) => (
+              <div>
+                <label className="block text-xs font-display uppercase tracking-widest text-copper-light mb-3">
+                  {String(t("calculator.step2"))}
+                </label>
+                <div className="space-y-2">
+                  {(Object.keys(pricingData.addons) as Array<keyof typeof pricingData.addons>).map((key) => {
+                    const item = pricingData.addons[key];
+                    const active = !!addons[key];
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => toggleAddon(key)}
+                        className={`w-full flex items-center justify-between p-3 rounded-sm border text-xs font-body transition-all ${
+                          active
+                            ? "bg-copper/20 border-copper text-white"
+                            : "bg-dark-bg border-copper/10 text-text-light/70 hover:border-copper/30"
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className={`w-3.5 h-3.5 rounded-sm border flex items-center justify-center text-[9px] ${active ? 'bg-copper border-copper text-white font-bold' : 'border-copper/30'}`}>
+                            {active ? "X" : ""}
+                          </span>
+                          <span>{item.name}</span>
+                        </div>
+                        <span className="font-display font-bold text-copper-light">+{money(item.price)} {String(t("calculator.currency_unit"))}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-display uppercase tracking-widest text-copper-light mb-2">
+                  {String(t("calculator.step3"))}
+                </label>
+                <div className="flex gap-2">
                   <button
-                    key={s.id}
-                    type="button"
-                    onClick={() => setServiceType(s.id as any)}
-                    className={`p-3 text-left rounded border text-xs font-medium transition-all ${
-                      serviceType === s.id
-                        ? 'bg-copper/20 text-copper border-copper'
-                        : 'bg-dark-surface text-paper-muted border-dark-border hover:bg-dark-card'
-                    }`}
+                    onClick={() => setDiscountType("none")}
+                    className={`flex-1 py-2 text-xs font-display uppercase tracking-wider rounded-sm border ${discountType === "none" ? "bg-copper text-white border-copper font-bold" : "bg-dark-bg border-copper/20 text-text-light/60"}`}
                   >
-                    {s.label}
+                    {String(t("calculator.ordinar"))}
                   </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 3. Discount options */}
-            <div>
-              <label className="block text-xs font-mono uppercase text-copper mb-2">
-                3. Rabattkategori
-              </label>
-              <div className="grid grid-cols-3 gap-2">
-                {[
-                  { id: 'none', label: 'Standard' },
-                  { id: 'student', label: 'Student (-10%)' },
-                  { id: 'laerling', label: 'Lærling (-30%)' },
-                ].map((d) => (
                   <button
-                    key={d.id}
-                    type="button"
-                    onClick={() => setDiscount(d.id as any)}
-                    className={`py-2 px-3 text-center rounded border text-xs font-mono transition-all ${
-                      discount === d.id
-                        ? 'bg-copper text-white border-copper font-bold'
-                        : 'bg-dark-surface text-paper-muted border-dark-border'
-                    }`}
+                    onClick={() => setDiscountType("student")}
+                    className={`flex-1 py-2 text-xs font-display uppercase tracking-wider rounded-sm border ${discountType === "student" ? "bg-copper text-white border-copper font-bold" : "bg-dark-bg border-copper/20 text-text-light/60"}`}
                   >
-                    {d.label}
+                    {String(t("calculator.student"))}
                   </button>
-                ))}
+                  <button
+                    onClick={() => setDiscountType("laerling")}
+                    className={`flex-1 py-2 text-xs font-display uppercase tracking-wider rounded-sm border ${discountType === "laerling" ? "bg-copper text-white border-copper font-bold" : "bg-dark-bg border-copper/20 text-text-light/60"}`}
+                  >
+                    {String(t("calculator.laerling"))}
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Addon Checkbox */}
-            {serviceType !== 'pakke' && (
-              <label className="flex items-center gap-3 p-3 bg-dark-surface rounded border border-dark-border cursor-pointer hover:border-copper/40 transition-colors">
-                <input
-                  type="checkbox"
-                  checked={addWash}
-                  onChange={(e) => setAddWash(e.target.checked)}
-                  className="w-4 h-4 accent-copper rounded"
-                />
-                <span className="text-xs text-paper">
-                  Inkluder Hårvask, Hodebunnsmassasje &amp; Føn (+120 NOK)
+            {/* Price Output Column */}
+            <div className="lg:col-span-5 bg-dark-bg rounded-sm border border-copper/20 p-6 flex flex-col justify-between">
+              <div>
+                <span className="text-[10px] font-display uppercase tracking-widest text-copper font-bold">
+                  {String(t("calculator.calculated_label"))}
                 </span>
-              </label>
-            )}
-          </div>
-
-          {/* Results Box */}
-          <div className="lg:col-span-5 flex flex-col justify-between p-6 bg-dark-surface border border-copper/30 rounded-lg">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-copper block mb-4">
-                BEREGNET ESTIMAT
-              </span>
-
-              <div className="mb-6">
-                <span className="text-xs text-paper-muted block mb-1">{estimatePriceText}</span>
-                <div className="font-display text-4xl sm:text-5xl font-bold text-copper">
-                  {finalPrice} <span className="text-xl text-paper">{currencyLabel}</span>
+                <div className="my-6">
+                  <div className="text-4xl sm:text-5xl font-display font-bold text-copper-light font-mono">
+                    {money(total)} <span className="text-lg font-body text-text-light/60">{String(t("calculator.currency_unit"))}</span>
+                  </div>
+                  <p className="text-xs text-text-light/50 mt-2 font-body">
+                    {String(t("calculator.estimated_time"))}{baseObj.duration}
+                  </p>
                 </div>
-                {discount !== 'none' && (
-                  <span className="text-[11px] font-mono text-emerald-400 block mt-1">
-                    ✓ Rabatt er fratrukket i estimatet
-                  </span>
-                )}
+
+                <div className="border-t border-copper/10 pt-4 space-y-2 text-xs text-text-light/70 font-body">
+                  <div className="flex justify-between">
+                    <span>{baseObj.name}</span>
+                    <span className="font-mono">{money(baseObj.price)} {String(t("calculator.currency_unit"))}</span>
+                  </div>
+                  {Object.keys(addons).map((k) => addons[k] && (
+                    <div key={k} className="flex justify-between text-copper-light">
+                      <span>+ {pricingData.addons[k as keyof typeof pricingData.addons].name}</span>
+                      <span className="font-mono">+{money(pricingData.addons[k as keyof typeof pricingData.addons].price)} {String(t("calculator.currency_unit"))}</span>
+                    </div>
+                  ))}
+                  {discountType !== "none" && (
+                    <div className="flex justify-between text-emerald-400 font-medium pt-1 border-t border-copper/10">
+                      <span>Rabatt ({discountType === "student" ? "10%" : "30%"})</span>
+                      <span>{String(t("calculator.calculated_label"))}</span>
+                    </div>
+                  )}
+                </div>
               </div>
 
-              <div className="mb-6 pb-6 border-b border-dark-border">
-                <span className="text-xs text-paper-muted block mb-1">{estimateDurationText}</span>
-                <div className="font-display text-2xl font-bold text-paper">
-                  ca. {estMinutes} minutter
-                </div>
+              <div className="mt-8 pt-6 border-t border-copper/20">
+                <a
+                  href="#booking"
+                  className="w-full block text-center bg-copper hover:bg-copper-dark text-white font-display font-bold uppercase tracking-widest text-xs py-3.5 rounded-sm transition-all shadow-lg"
+                >
+                  {String(t("calculator.book_btn"))}
+                </a>
               </div>
-
-              <ul className="space-y-2 text-xs text-paper-muted mb-8">
-                <li className="flex items-center gap-2">
-                  <span className="text-copper">✓</span> Inkluderer personlig stilkonsultasjon
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-copper">✓</span> Ingen påmeldingskrav for booking
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-copper">✓</span> Velg din favorittstylist i neste steg
-                </li>
-              </ul>
             </div>
 
-            <a
-              href="#booking"
-              className="w-full py-3.5 bg-copper hover:bg-copper-dark text-white font-display text-base font-bold uppercase tracking-wider rounded transition-all text-center shadow-lg shadow-copper/20"
-            >
-              Bestill Denne Timen Nå
-            </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

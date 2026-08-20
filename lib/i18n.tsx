@@ -1,5 +1,4 @@
 "use client";
-
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import content from '@/lib/content.json';
 
@@ -14,16 +13,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('locale');
-    if (saved && saved !== content.defaultLocale) {
-      setLocaleState(saved);
-    }
+    if (saved && saved !== content.defaultLocale) setLocaleState(saved);
   }, []);
 
   const setLocale = useCallback((l: string) => {
     setLocaleState(l);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('locale', l);
-    }
+    if (typeof window !== 'undefined') localStorage.setItem('locale', l);
   }, []);
 
   const t = useCallback((path: string): unknown => {
@@ -31,7 +26,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     const locales = content.locales as Record<string, Record<string, unknown>>;
     let val: unknown = locales[locale];
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in (val as Record<string, unknown>)) {
+      if (val && typeof val === 'object' && val !== null && k in val) {
         val = (val as Record<string, unknown>)[k];
       } else {
         val = undefined;
@@ -41,7 +36,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     if (val !== undefined) return val;
     val = locales[content.defaultLocale];
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in (val as Record<string, unknown>)) {
+      if (val && typeof val === 'object' && val !== null && k in val) {
         val = (val as Record<string, unknown>)[k];
       } else {
         val = undefined;
@@ -51,13 +46,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     return val ?? path;
   }, [locale]);
 
-  return (
-    <LocaleContext.Provider value={{ locale, setLocale, t }}>
-      {children}
-    </LocaleContext.Provider>
-  );
+  return <LocaleContext value={{ locale, setLocale, t }}>{children}</LocaleContext>;
 }
 
-export function useLocale() {
-  return useContext(LocaleContext);
-}
+export function useLocale() { return useContext(LocaleContext); }

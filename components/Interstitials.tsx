@@ -1,65 +1,43 @@
 "use client";
+import React from "react";
+import { useLocale } from "@/lib/i18n";
+import { Marquee } from "./motion";
 
-import React from 'react';
-import { useLocale } from '@/lib/i18n';
-import { Marquee } from '@/components/motion';
-
-export function TickerInterstitial() {
+export function RatingStrip() {
   const { t } = useLocale();
-
-  const est = (t('interstitials.est') as string) || 'EST. 2018';
-  const trondheimBarber = (t('interstitials.trondheimBarber') as string) || 'TRONDHEIMS FREMSTE BARBERSHOP';
-  const moholtAlle = (t('interstitials.moholtAlle') as string) || 'MOHOLT ALLÉ 1';
-  const beddingenSolsiden = (t('interstitials.beddingenSolsiden') as string) || 'BEDDINGEN 10 SOLSIDEN';
-  const googleRating = (t('interstitials.googleRating') as string) || '4.9 GOOGLE RATING';
-  const foilageBalayage = (t('interstitials.foilageBalayage') as string) || 'FOILAGE & BALAYAGE';
-  const lanzaKeratin = (t('interstitials.lanzaKeratin') as string) || 'L’ANZA KERATIN';
+  const items = [
+    String(t("interstitials.ticker_1") || "4.9 / 5.0 GOOGLE RATING · 380+ VERIFISERTE GJESTER"),
+    String(t("interstitials.ticker_2") || "MOHOLT SALONG · SOLSIDEN BARBERSHOP"),
+    String(t("interstitials.ticker_3") || "OFFISIELL L'ANZA OG KEUNE FORHANDLER"),
+    String(t("interstitials.ticker_4") || "SKARPE LINJER · KNIVBARBERING · FOILAGE")
+  ];
 
   return (
-    <div className="py-4 bg-dark-surface border-y border-dark-border overflow-hidden">
-      <Marquee speed={30}>
-        <div className="flex items-center gap-10 text-xs font-mono uppercase tracking-widest text-paper-muted">
-          <span className="text-copper font-bold">{est}</span>
-          <span>{trondheimBarber}</span>
-          <span className="text-copper font-bold">{moholtAlle}</span>
-          <span>{beddingenSolsiden}</span>
-          <span className="text-copper font-bold">{googleRating}</span>
-          <span>{foilageBalayage}</span>
-          <span className="text-copper font-bold">{lanzaKeratin}</span>
-        </div>
-      </Marquee>
+    <div className="bg-copper/10 border-y border-copper/30 py-3 relative z-20 overflow-hidden">
+      <Marquee items={items} speed={25} />
     </div>
   );
 }
 
-export function WatermarkInterstitial({ word }: { word: string }) {
+export function LabeledHairline({ labelKey, fallback }: { labelKey?: string; fallback: string }) {
+  const { t } = useLocale();
+  const text = labelKey ? String(t(labelKey)) : fallback;
   return (
-    <div className="relative py-12 bg-dark-bg border-y border-dark-border overflow-hidden select-none">
-      <div 
-        aria-hidden="true" 
-        className="text-center pointer-events-none opacity-[0.06] font-display text-6xl sm:text-9xl font-bold uppercase tracking-tighter text-white whitespace-nowrap"
-      >
-        {word}
-      </div>
+    <div className="py-6 bg-dark-bg flex items-center justify-center border-y border-copper/15">
+      <span className="text-[10px] font-display uppercase tracking-[0.3em] text-copper-light font-bold">
+        — {text} —
+      </span>
     </div>
   );
 }
 
-export function StatementInterstitial({ statement }: { statement: string }) {
+export function WatermarkBanner({ textKey, fallback }: { textKey?: string; fallback: string }) {
+  const { t } = useLocale();
+  const text = textKey ? String(t(textKey)) : fallback;
   return (
-    <div className="py-12 bg-dark-card border-y border-copper/30 text-center px-4">
-      <p className="font-serif italic text-xl sm:text-3xl text-paper max-w-4xl mx-auto leading-relaxed">
-        "{statement}"
-      </p>
-    </div>
-  );
-}
-
-export function RatingInterstitial() {
-  return (
-    <div className="py-6 bg-dark-surface border-y border-dark-border text-center px-4">
-      <span className="text-xs font-mono uppercase tracking-widest text-copper">
-        4.9 / 5.0 GOOGLE RATING · OVER 580 VERIFISERTE KUNDEVURDERINGER I TRONDHEIM
+    <div className="py-8 bg-dark-card border-y border-copper/20 overflow-hidden flex items-center justify-center">
+      <span className="font-display font-bold text-3xl sm:text-6xl uppercase tracking-widest text-copper/15 select-none whitespace-nowrap">
+        {text}
       </span>
     </div>
   );
