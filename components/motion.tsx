@@ -20,6 +20,25 @@ import { Children, useEffect, useRef, useState, type ReactNode, type RefObject }
 const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
+ * Named curves, so a section can mean something different from its neighbour.
+ *
+ * Measured 20.08: three sites for unrelated businesses carried byte-identical
+ * motion, and the cause was here — one curve and one duration for every element
+ * on every site. The defaults below keep the previous behaviour exactly; the
+ * point is that they are now overridable per element.
+ */
+export const CURVES = {
+  /** Entering the viewport. The default. */
+  enter: EASE_OUT,
+  /** Large blocks and hero content — softer landing. */
+  enterSoft: [0.33, 1, 0.68, 1] as [number, number, number, number],
+  /** Switching between two states: accordions, tabs, menus. */
+  transition: [0.65, 0, 0.35, 1] as [number, number, number, number],
+  /** Pointer feedback. Anything slower reads as lag. */
+  micro: [0.4, 0, 0.2, 1] as [number, number, number, number],
+} as const;
+
+/**
  * Elements still waiting to be revealed, watched by ONE listener for the page.
  *
  * This used to be Framer's `whileInView` with `once: true`, and Safari made a
@@ -105,16 +124,71 @@ interface RevealProps extends MotionBoxProps {
   delay?: number;
   /** Travel in px. 24-40 reads as intent; much more reads as a slide deck. */
   y?: number;
+  /**
+   * Seconds. Pick by job, not one value for the page: 0.5-0.75 for an ordinary
+   * entrance, 0.9-1.2 for a whole block revealing, 1.2-2.0 for the one signature
+   * moment. Leaving every element on the default is what made the fleet identical.
+   */
+  duration?: number;
+  /** A curve from CURVES. Default `enter`. */
+  ease?: readonly [number, number, number, number];
+  /**
+   * Seconds between direct children, when there is more than one.
+   *
+   * Without this a `<Reveal>` around a section moves the whole section as one
+   * slab: heading, copy and buttons arrive in the same instant, and the section
+   * reads as a slide rather than as something unfolding. Owner's words on the
+   * barbershop build: "відчуття що анімації на всій секції а не на контенті в ній".
+   *
+   * 0 keeps the old behaviour exactly — one element, one movement.
+   */
+  stagger?: number;
+  /**
+   * Which way the element travels as it arrives. `up` — the default and the
+   * only behaviour this had — means it starts below and rises.
+   *
+   * It exists because the generator kept asking for it: eight `direction` props
+   * on one shipped barbershop site, on a primitive that declared none, so React
+   * dropped every one of them and each section rose from below like all the
+   * others. The distance is still whatever `y` says.
+   */
+  direction?: "up" | "down" | "left" | "right";
+}
+
+/** Where the element starts, in the px `y` has always meant. */
+function travelFrom(direction: NonNullable<RevealProps["direction"]>, distance: number): { x: number } | { y: number } {
+  switch (direction) {
+    case "down":
+      return { y: -distance };
+    case "left":
+      return { x: distance };
+    case "right":
+      return { x: -distance };
+    default:
+      return { y: distance };
+  }
 }
 
 /**
  * Fade-and-rise as the element enters the viewport. The default entrance for
  * anything that is not a list — headings, images, panels, whole sections.
  */
-export function Reveal({ children, delay = 0, y = 32, as = "div", className }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  y = 32,
+  duration = 0.55,
+  ease = CURVES.enter,
+  stagger = 0,
+  direction = "up",
+  as = "div",
+  className,
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const revealed = useRevealed(ref);
   const reduced = useReducedMotion();
+  const from = travelFrom(direction, y);
+  const settled = Object.fromEntries(Object.keys(from).map((axis) => [axis, 0]));
 
   if (reduced) {
     const Plain = as;
@@ -122,28 +196,58 @@ export function Reveal({ children, delay = 0, y = 32, as = "div", className }: R
   }
 
   const Animated = motion[as] as typeof motion.div;
+
+  // With a stagger the container itself stays put and each child arrives on its
+  // own beat. Without it the container moves and the children ride along — the
+  // original behaviour, kept byte-for-byte for every existing call site.
+  const kids = Children.toArray(children);
+  if (stagger > 0 && kids.length > 1) {
+    return (
+      <Animated ref={ref} className={className}>
+        {kids.map((child, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, ...from }}
+            animate={revealed ? { opacity: 1, ...settled } : { opacity: 0, ...from }}
+            transition={{ duration, ease, delay: delay + i * stagger }}
+          >
+            {child}
+          </motion.div>
+        ))}
+      </Animated>
+    );
+  }
+
   return (
     <Animated
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y }}
-      animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration: 0.55, ease: EASE_OUT, delay }}
+      initial={{ opacity: 0, ...from }}
+      animate={revealed ? { opacity: 1, ...settled } : { opacity: 0, ...from }}
+      transition={{ duration, ease, delay }}
     >
       {children}
     </Animated>
   );
 }
 
-const containerVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
-};
+/**
+ * Built per instance instead of shared, so one list can cascade at text speed
+ * (0.025-0.05s) while another lands block by block (0.1-0.2s).
+ */
+function buildContainerVariants(stagger: number, delayChildren: number): Variants {
+  return { hidden: {}, show: { transition: { staggerChildren: stagger, delayChildren } } };
+}
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE_OUT } },
-};
+function buildItemVariants(duration: number, ease: readonly [number, number, number, number]): Variants {
+  return {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration, ease } },
+  };
+}
+
+const containerVariants = buildContainerVariants(0.09, 0.05);
+const itemVariants = buildItemVariants(0.55, EASE_OUT);
 
 /**
  * Reveals children one after another. Wrap the list, then wrap each child in
@@ -273,9 +377,25 @@ export function Parallax({ children, distance = 80, as = "div", className }: Par
 
 interface MarqueeProps {
   /** One pass of content. It is repeated as many times as the screen needs. */
-  children: ReactNode;
+  children?: ReactNode;
+  /**
+   * The same thing as a list, which is how the generator asks for it.
+   *
+   * `<Marquee items={tickerItems} />` with no children shipped on a live hero
+   * and rendered an empty bar: `items` was not a prop, React dropped it, and
+   * there was nothing left to repeat. Children still win when both are given.
+   */
+  items?: ReactNode[];
   /** Seconds for one pass to cross its own width. Higher is calmer. */
   duration?: number;
+  /**
+   * What the generator calls `duration`, in the same seconds.
+   *
+   * Two shipped sites wrote `speed={22}` and `speed={30}` against a 26s
+   * default — either side of it, which is what settles whether "speed" here
+   * means seconds or pixels. `duration` still wins if both are present.
+   */
+  speed?: number;
   /** Right-to-left by default; `true` runs it the other way. */
   reverse?: boolean;
   className?: string;
@@ -297,7 +417,9 @@ interface MarqueeProps {
  * always at least one screen longer than the screen. The track moves by exactly
  * one pass width, on its own layer.
  */
-export function Marquee({ children, duration = 26, reverse = false, className }: MarqueeProps) {
+export function Marquee({ children, items, duration, speed, reverse = false, className }: MarqueeProps) {
+  const seconds = duration ?? speed ?? 26;
+  const content = children ?? items?.map((item, i) => <span key={i}>{item}</span>);
   const box = useRef<HTMLDivElement>(null);
   const pass = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -318,7 +440,7 @@ export function Marquee({ children, duration = 26, reverse = false, className }:
     document.fonts?.ready.then(measure).catch(() => undefined);
     window.addEventListener("resize", measure, { passive: true });
     return () => window.removeEventListener("resize", measure);
-  }, [children]);
+  }, [content]);
 
   // The trailing gap belongs to the pass, not to the track — that is what makes
   // consecutive passes tile with no seam.
@@ -329,7 +451,7 @@ export function Marquee({ children, duration = 26, reverse = false, className }:
       aria-hidden={hidden || undefined}
       className="flex shrink-0 items-center gap-[var(--marquee-gap,2.5rem)] pr-[var(--marquee-gap,2.5rem)]"
     >
-      {children}
+      {content}
     </div>
   );
 
@@ -347,7 +469,7 @@ export function Marquee({ children, duration = 26, reverse = false, className }:
         className="flex w-max"
         style={{ willChange: "transform" }}
         animate={{ x: reverse ? [-width, 0] : [0, -width] }}
-        transition={{ duration, ease: "linear", repeat: Infinity }}
+        transition={{ duration: seconds, ease: "linear", repeat: Infinity }}
       >
         {Array.from({ length: copies }, (_, i) => onePass(i, i > 0))}
       </motion.div>

@@ -1,193 +1,212 @@
 "use client";
-import React, { useState } from "react";
-import { useLocale } from "@/lib/i18n";
+import { useState, useMemo } from "react";
 import pricingData from "@/lib/pricing.json";
-import { Reveal } from "./motion";
 
 export default function Calculator() {
-  const { t } = useLocale();
+  const [selectedLocation, setSelectedLocation] = useState(pricingData.locations[0].id);
+  const [selectedServices, setSelectedServices] = useState<string[]>(["cowboy_herre"]);
+  const [selectedDiscount, setSelectedDiscount] = useState<string>("standard");
 
-  const [selectedBase, setSelectedBase] = useState<keyof typeof pricingData.baseServices>("herreklipp");
-  const [addons, setAddons] = useState<Record<string, boolean>>({
-    wash: false,
-    toning: false,
-    bryn: false,
-    spa: false,
-  });
-  const [discountType, setDiscountType] = useState<"none" | "student" | "laerling">("none");
-
-  const toggleAddon = (key: string) => {
-    setAddons((prev) => ({ ...prev, [key]: !prev[key] }));
+  const toggleService = (id: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
-  const baseObj = pricingData.baseServices[selectedBase];
-  let total = baseObj.price;
+  const allServices = useMemo(() => {
+    return pricingData.categories.flatMap((cat) => cat.services);
+  }, []);
 
-  Object.keys(addons).forEach((key) => {
-    if (addons[key] && key in pricingData.addons) {
-      total += pricingData.addons[key as keyof typeof pricingData.addons].price;
-    }
-  });
+  const { discountAmount, total, totalDuration } = useMemo(() => {
+    let sum = 0;
+    let duration = 0;
+    selectedServices.forEach((srvId) => {
+      const found = allServices.find((s) => s.id === srvId);
+      if (found) {
+        sum += found.price;
+        duration += found.duration;
+      }
+    });
 
-  if (discountType === "student") {
-    total = Math.round(total * (1 - pricingData.discounts.student));
-  } else if (discountType === "laerling") {
-    total = Math.round(total * (1 - pricingData.discounts.laerling));
-  }
+    const discObj = pricingData.discounts.find((d) => d.id === selectedDiscount);
+    const discPct = discObj ? discObj.percentage : 0;
+    const discVal = Math.round((sum * discPct) / 100);
+    const finalTotal = Math.max(0, sum - discVal);
 
-  const money = (n: number) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
+    return {
+      discountAmount: discVal,
+      total: finalTotal,
+      totalDuration: duration,
+    };
+  }, [selectedServices, selectedDiscount, allServices]);
+
+  const formatNOK = (val: number) => {
+    return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0") + " NOK";
+  };
 
   return (
-    <section id="calculator" className="py-24 bg-dark-bg scroll-mt-20 border-t border-copper/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-xs font-display uppercase tracking-widest text-copper font-bold mb-2">
-            {String(t("calculator.kicker"))}
-          </p>
-          <h2 className="text-3xl sm:text-5xl font-display font-bold text-white uppercase tracking-tight mb-4">
-            {String(t("calculator.title"))}
+    <section id="beregner" className="py-20 sm:py-28 bg-bg-surface border-y border-border-dark scroll-mt-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="text-xs font-semibold tracking-widest text-accent uppercase mb-2">
+            Interaktiv priskalkulator
+          </div>
+          <h2 className="font-display text-3xl sm:text-5xl font-bold text-white uppercase tracking-tight mb-4">
+            Beregn din behandling
           </h2>
-          <p className="text-xs sm:text-sm text-text-light/70 font-body">
-            {String(t("calculator.subtitle"))}
+          <p className="text-text-light-muted text-base sm:text-lg">
+            Sett sammen ønskede behandlinger og se nøyaktig tidsforbruk og estimert pris.
           </p>
         </div>
 
-        <Reveal direction="up">
-          <div className="max-w-4xl mx-auto bg-dark-card border border-copper/30 rounded-sm p-6 sm:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            {/* Options Column */}
-            <div className="lg:col-span-7 space-y-6">
-              <div>
-                <label className="block text-xs font-display uppercase tracking-widest text-copper-light mb-3">
-                  {String(t("calculator.step1"))}
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {(Object.keys(pricingData.baseServices) as Array<keyof typeof pricingData.baseServices>).map((key) => {
-                    const item = pricingData.baseServices[key];
-                    const active = selectedBase === key;
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => setSelectedBase(key)}
-                        className={`text-left p-3.5 rounded-sm border transition-all ${
-                          active
-                            ? "bg-copper/20 border-copper text-white shadow-md"
-                            : "bg-dark-bg border-copper/10 text-text-light/70 hover:border-copper/30"
-                        }`}
-                      >
-                        <div className="text-xs font-display font-bold uppercase">{item.name}</div>
-                        <div className="text-[11px] font-mono text-copper-light mt-1">{money(item.price)} {String(t("calculator.currency_unit"))} ({item.duration})</div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-display uppercase tracking-widest text-copper-light mb-3">
-                  {String(t("calculator.step2"))}
-                </label>
-                <div className="space-y-2">
-                  {(Object.keys(pricingData.addons) as Array<keyof typeof pricingData.addons>).map((key) => {
-                    const item = pricingData.addons[key];
-                    const active = !!addons[key];
-                    return (
-                      <button
-                        key={key}
-                        onClick={() => toggleAddon(key)}
-                        className={`w-full flex items-center justify-between p-3 rounded-sm border text-xs font-body transition-all ${
-                          active
-                            ? "bg-copper/20 border-copper text-white"
-                            : "bg-dark-bg border-copper/10 text-text-light/70 hover:border-copper/30"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span className={`w-3.5 h-3.5 rounded-sm border flex items-center justify-center text-[9px] ${active ? 'bg-copper border-copper text-white font-bold' : 'border-copper/30'}`}>
-                            {active ? "X" : ""}
-                          </span>
-                          <span>{item.name}</span>
-                        </div>
-                        <span className="font-display font-bold text-copper-light">+{money(item.price)} {String(t("calculator.currency_unit"))}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-display uppercase tracking-widest text-copper-light mb-2">
-                  {String(t("calculator.step3"))}
-                </label>
-                <div className="flex gap-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Controls side */}
+          <div className="lg:col-span-7 bg-bg-dark border border-border-dark rounded-lg p-6 sm:p-8 space-y-8">
+            {/* Step 1: Location */}
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-accent mb-3">
+                1. Velg avdeling i Trondheim
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {pricingData.locations.map((loc) => (
                   <button
-                    onClick={() => setDiscountType("none")}
-                    className={`flex-1 py-2 text-xs font-display uppercase tracking-wider rounded-sm border ${discountType === "none" ? "bg-copper text-white border-copper font-bold" : "bg-dark-bg border-copper/20 text-text-light/60"}`}
+                    key={loc.id}
+                    type="button"
+                    onClick={() => setSelectedLocation(loc.id)}
+                    className={`p-3 text-left rounded border transition-all text-sm font-medium ${
+                      selectedLocation === loc.id
+                        ? "border-accent bg-accent/10 text-white"
+                        : "border-border-dark text-text-light-muted hover:border-border-light"
+                    }`}
                   >
-                    {String(t("calculator.ordinar"))}
+                    {loc.name}
                   </button>
-                  <button
-                    onClick={() => setDiscountType("student")}
-                    className={`flex-1 py-2 text-xs font-display uppercase tracking-wider rounded-sm border ${discountType === "student" ? "bg-copper text-white border-copper font-bold" : "bg-dark-bg border-copper/20 text-text-light/60"}`}
-                  >
-                    {String(t("calculator.student"))}
-                  </button>
-                  <button
-                    onClick={() => setDiscountType("laerling")}
-                    className={`flex-1 py-2 text-xs font-display uppercase tracking-wider rounded-sm border ${discountType === "laerling" ? "bg-copper text-white border-copper font-bold" : "bg-dark-bg border-copper/20 text-text-light/60"}`}
-                  >
-                    {String(t("calculator.laerling"))}
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Price Output Column */}
-            <div className="lg:col-span-5 bg-dark-bg rounded-sm border border-copper/20 p-6 flex flex-col justify-between">
-              <div>
-                <span className="text-[10px] font-display uppercase tracking-widest text-copper font-bold">
-                  {String(t("calculator.calculated_label"))}
-                </span>
-                <div className="my-6">
-                  <div className="text-4xl sm:text-5xl font-display font-bold text-copper-light font-mono">
-                    {money(total)} <span className="text-lg font-body text-text-light/60">{String(t("calculator.currency_unit"))}</span>
-                  </div>
-                  <p className="text-xs text-text-light/50 mt-2 font-body">
-                    {String(t("calculator.estimated_time"))}{baseObj.duration}
-                  </p>
-                </div>
-
-                <div className="border-t border-copper/10 pt-4 space-y-2 text-xs text-text-light/70 font-body">
-                  <div className="flex justify-between">
-                    <span>{baseObj.name}</span>
-                    <span className="font-mono">{money(baseObj.price)} {String(t("calculator.currency_unit"))}</span>
-                  </div>
-                  {Object.keys(addons).map((k) => addons[k] && (
-                    <div key={k} className="flex justify-between text-copper-light">
-                      <span>+ {pricingData.addons[k as keyof typeof pricingData.addons].name}</span>
-                      <span className="font-mono">+{money(pricingData.addons[k as keyof typeof pricingData.addons].price)} {String(t("calculator.currency_unit"))}</span>
+            {/* Step 2: Service checkboxes */}
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-accent mb-3">
+                2. Velg behandlinger (klikk for å legge til)
+              </label>
+              <div className="space-y-4">
+                {pricingData.categories.map((cat) => (
+                  <div key={cat.id} className="border-t border-border-dark/60 pt-3">
+                    <div className="text-xs font-display uppercase tracking-widest text-text-light-muted mb-2 font-semibold">
+                      {cat.name}
                     </div>
-                  ))}
-                  {discountType !== "none" && (
-                    <div className="flex justify-between text-emerald-400 font-medium pt-1 border-t border-copper/10">
-                      <span>Rabatt ({discountType === "student" ? "10%" : "30%"})</span>
-                      <span>{String(t("calculator.calculated_label"))}</span>
+                    <div className="space-y-2">
+                      {cat.services.map((srv) => {
+                        const checked = selectedServices.includes(srv.id);
+                        return (
+                          <div
+                            key={srv.id}
+                            onClick={() => toggleService(srv.id)}
+                            className={`flex items-center justify-between p-3 rounded border cursor-pointer transition-all ${
+                              checked
+                                ? "bg-bg-surface border-accent text-white"
+                                : "bg-bg-surface/40 border-border-dark/60 text-text-light-muted hover:border-border-light"
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <div
+                                className={`w-4 h-4 rounded-sm border flex items-center justify-center text-[10px] ${
+                                  checked ? "border-accent bg-accent text-white" : "border-border-dark"
+                                }`}
+                              >
+                                {checked ? "·" : ""}
+                              </div>
+                              <span className="text-sm font-medium">{srv.name}</span>
+                            </div>
+                            <div className="text-xs font-display font-semibold text-accent tabular-nums">
+                              {srv.price} NOK
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-copper/20">
-                <a
-                  href="#booking"
-                  className="w-full block text-center bg-copper hover:bg-copper-dark text-white font-display font-bold uppercase tracking-widest text-xs py-3.5 rounded-sm transition-all shadow-lg"
-                >
-                  {String(t("calculator.book_btn"))}
-                </a>
+                  </div>
+                ))}
               </div>
             </div>
 
+            {/* Step 3: Discounts */}
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-accent mb-3">
+                3. Rabatt / Status
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {pricingData.discounts.map((disc) => (
+                  <button
+                    key={disc.id}
+                    type="button"
+                    onClick={() => setSelectedDiscount(disc.id)}
+                    className={`p-2 text-center rounded border text-xs font-medium transition-all ${
+                      selectedDiscount === disc.id
+                        ? "border-accent bg-accent text-white font-semibold"
+                        : "border-border-dark text-text-light-muted hover:border-border-light"
+                    }`}
+                  >
+                    {disc.name}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-        </Reveal>
+
+          {/* Result Summary Card */}
+          <div className="lg:col-span-5 sticky top-28 bg-bg-dark border-2 border-accent rounded-lg p-6 sm:p-8 shadow-2xl">
+            <div className="text-xs uppercase tracking-widest text-accent font-bold mb-1">
+              Ditt estimat
+            </div>
+            <div className="text-xl font-display font-bold text-white uppercase mb-6">
+              Oversikt før oppmøte
+            </div>
+
+            <div className="space-y-3 border-b border-border-dark pb-6 mb-6 text-sm">
+              <div className="flex justify-between text-text-light-muted">
+                <span>Valgt avdeling:</span>
+                <span className="text-white font-medium capitalize">{selectedLocation}</span>
+              </div>
+              <div className="flex justify-between text-text-light-muted">
+                <span>Antall tjenester:</span>
+                <span className="text-white font-medium tabular-nums">{selectedServices.length} stk</span>
+              </div>
+              <div className="flex justify-between text-text-light-muted">
+                <span>Beregnet tidsbruk:</span>
+                <span className="text-white font-medium tabular-nums">Ca. {totalDuration} minutter</span>
+              </div>
+              {discountAmount > 0 && (
+                <div className="flex justify-between text-accent">
+                  <span>Rabatt fradratt:</span>
+                  <span className="tabular-nums">-{formatNOK(discountAmount)}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Big Total Display */}
+            <div className="mb-6">
+              <div className="text-xs uppercase tracking-wider text-text-light-muted mb-1">
+                Totalt å betale i salong:
+              </div>
+              <div className="font-display text-4xl sm:text-5xl font-bold text-accent transition-all tabular-nums">
+                {formatNOK(total)}
+              </div>
+            </div>
+
+            <a
+              href="#bestilling"
+              className="w-full inline-flex items-center justify-center py-4 bg-primary hover:bg-accent text-white font-display font-bold uppercase tracking-wider text-sm rounded shadow-lg transition-all"
+            >
+              Gå til online bestilling
+            </a>
+
+            <div className="mt-4 text-[11px] text-center text-text-light-muted">
+              Ingen forhåndsbetaling kreves. Du betaler med kort eller Vipps ved oppmøte.
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

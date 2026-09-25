@@ -1,23 +1,46 @@
 {
   "currency": "NOK",
-  "estimationLogic": "sum",
-  "baseServices": {
-    "herreklipp": { "name": "Cowboy Herreklipp", "price": 870, "duration": "45 min" },
-    "dameklipp": { "name": "Angel Klipp Dame", "price": 890, "duration": "60 min" },
-    "skjeggtrim": { "name": "Skjeggtrim med kniv", "price": 720, "duration": "30 min" },
-    "klipp_skjegg": { "name": "Hårklipp & Skjegg Pakke", "price": 1300, "duration": "75 min" },
-    "foilage": { "name": "Foilage / Balayage Farge", "price": 1500, "duration": "120+ min" },
-    "helbarbering": { "name": "Helbarbering med Kniv", "price": 660, "duration": "45 min" }
-  },
-  "addons": {
-    "wash": { "name": "Luksus Vask & Hodebunnsmassasje", "price": 120 },
-    "toning": { "name": "Glans / Tonering", "price": 350 },
-    "bryn": { "name": "Form & Farge Bryn", "price": 535 },
-    "spa": { "name": "Nærende Hårkur / SPA", "price": 400 }
-  },
-  "discounts": {
-    "student": 0.10,
-    "senior": 0.10,
-    "laerling": 0.30
-  }
+  "locations": [
+    { "id": "solsiden", "name": "Solsiden (Barbershop & Klipp)" },
+    { "id": "moholt", "name": "Moholt (Salong, Barber & Farge)" }
+  ],
+  "categories": [
+    {
+      "id": "herre",
+      "name": "Herre & Skjegg",
+      "services": [
+        { "id": "cowboy_herre", "name": "Cowboy Herreklipp", "price": 870, "duration": 45 },
+        { "id": "klipp_skjegg", "name": "Hårklipp & Skjegg Combo", "price": 1300, "duration": 75 },
+        { "id": "skjeggtrim_kniv", "name": "Skjeggtrim med skarp kniv & omslag", "price": 720, "duration": 45 },
+        { "id": "helbarbering", "name": "Klassisk Helbarbering med kniv", "price": 660, "duration": 40 },
+        { "id": "maskinklipp", "name": "Maskinklipp (Fade / Snau)", "price": 495, "duration": 25 }
+      ]
+    },
+    {
+      "id": "dame",
+      "name": "Dame & Styling",
+      "services": [
+        { "id": "angel_dame", "name": "Angel Dameklipp & Formføn", "price": 890, "duration": 60 },
+        { "id": "vask_styling", "name": "Vask, Kur og Profesjonell Føn", "price": 750, "duration": 45 },
+        { "id": "speedstyling", "name": "Speedstyling før kvelden", "price": 400, "duration": 30 },
+        { "id": "eventstyling", "name": "Event- & Festoppsett", "price": 1000, "duration": 75 }
+      ]
+    },
+    {
+      "id": "farge",
+      "name": "Farge & Foilage (Moholt)",
+      "services": [
+        { "id": "foilage_balayage", "name": "Foilage / Balayage (timepris)", "price": 1500, "duration": 120 },
+        { "id": "helfarging", "name": "Helfarging & Ettervekst (timepris)", "price": 1500, "duration": 90 },
+        { "id": "glossing", "name": "Tonering / Glossing oppfrisking", "price": 350, "duration": 30 },
+        { "id": "bryn_farge", "name": "Forming og Farging av bryn", "price": 535, "duration": 30 }
+      ]
+    }
+  ],
+  "discounts": [
+    { "id": "standard", "name": "Ordinær", "percentage": 0 },
+    { "id": "student", "name": "Studentbevis (-10%)", "percentage": 10 },
+    { "id": "senior", "name": "Senior (-10%)", "percentage": 10 },
+    { "id": "laerling", "name": "Hos Lærling (-30% på Moholt)", "percentage": 30 }
+  ]
 }

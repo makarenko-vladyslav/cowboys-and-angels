@@ -1,113 +1,160 @@
 "use client";
-import React from "react";
 import { useLocale } from "@/lib/i18n";
 
 export default function Footer() {
   const { t } = useLocale();
 
-  const logoUrl = "/cowboys-and-angels/media/217ee0c8d84a6632.png/v1/fill/w_213,h_115,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CA_logo_copper.png";
-
   return (
-    <footer className="bg-dark-bg border-t border-copper/20 pt-16 pb-12 text-text-light/80 relative">
+    <footer className="bg-bg-dark border-t border-border-dark text-text-light pt-16 pb-8 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* 4 Main Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-copper/15">
-          {/* Brand Column */}
-          <div className="space-y-4">
-            <img src={logoUrl} alt={String(t("footer.brand_alt"))} className="h-10 w-auto object-contain" />
-            <p className="text-xs font-body text-text-light/60 leading-relaxed">
+        {/* Main Footer Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+          {/* Col 1: Brand Wordmark + Voice Line */}
+          <div className="lg:col-span-2">
+            <img
+              src="https://static.wixstatic.com/media/973894_4d8cbed4ea744a8087f047896d4aabc3~mv2.webp/v1/crop/x_0,y_67,w_500,h_492,q_80,enc_auto/973894_4d8cbed4ea744a8087f047896d4aabc3~mv2.webp"
+              alt="Cowboys and Angels logo"
+              className="h-10 w-auto object-contain mb-4"
+            />
+            <p className="text-sm text-text-light-muted max-w-sm mb-4 leading-relaxed">
               {String(t("footer.tagline"))}
             </p>
-            <div className="flex gap-4 pt-2 text-xs font-display uppercase tracking-widest">
+            <p className="text-xs text-accent font-medium mb-6">
+              {String(t("footer.brandVoiceLine"))}
+            </p>
+
+            {/* Social Row as clean TEXT links */}
+            <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-wider text-accent">
               <a
                 href="https://www.facebook.com/cowboysandangelsmoholt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-copper hover:text-white transition-colors"
+                className="hover:underline"
               >
-                {String(t("footer.facebook_link"))}
+                Facebook
               </a>
+              <span>·</span>
               <a
                 href="https://www.instagram.com/cowboysandangels_moholt/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-copper hover:text-white transition-colors"
+                className="hover:underline"
               >
-                {String(t("footer.instagram_link"))}
+                Instagram
+              </a>
+              <span>·</span>
+              <a
+                href="https://www.cowboysandangels.shop/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Nettbutikk
               </a>
             </div>
           </div>
 
-          {/* Quick Links Column */}
+          {/* Col 2: Navigation Links */}
           <div>
-            <h4 className="font-display font-bold uppercase text-white text-xs tracking-widest mb-4">
-              {String(t("footer.quick_links"))}
-            </h4>
-            <ul className="space-y-2 text-xs font-body">
-              <li><a href="#locations" className="hover:text-copper transition-colors">{String(t("nav.moholt"))} & {String(t("nav.solsiden"))}</a></li>
-              <li><a href="#services" className="hover:text-copper transition-colors">{String(t("nav.services"))}</a></li>
-              <li><a href="#calculator" className="hover:text-copper transition-colors">{String(t("nav.calculator"))}</a></li>
-              <li><a href="#craft" className="hover:text-copper transition-colors">{String(t("nav.craft"))}</a></li>
-              <li><a href="#gallery" className="hover:text-copper transition-colors">{String(t("nav.gallery"))}</a></li>
-              <li><a href="#team" className="hover:text-copper transition-colors">{String(t("nav.team"))}</a></li>
-              <li><a href="#faq" className="hover:text-copper transition-colors">{String(t("nav.faq"))}</a></li>
+            <div className="font-display text-sm font-bold uppercase tracking-wider text-white mb-4">
+              {String(t("footer.navHeader"))}
+            </div>
+            <ul className="space-y-2 text-xs uppercase tracking-wider text-text-light-muted">
+              <li>
+                <a href="#tjenester" className="hover:text-accent transition-colors">Tjenester</a>
+              </li>
+              <li>
+                <a href="#pakker" className="hover:text-accent transition-colors">Signaturpakker</a>
+              </li>
+              <li>
+                <a href="#priser" className="hover:text-accent transition-colors">Prisliste</a>
+              </li>
+              <li>
+                <a href="#beregner" className="hover:text-accent transition-colors">Kalkulator</a>
+              </li>
+              <li>
+                <a href="#om-oss" className="hover:text-accent transition-colors">Håndverket</a>
+              </li>
+              <li>
+                <a href="#galleri" className="hover:text-accent transition-colors">Galleriet</a>
+              </li>
+              <li>
+                <a href="#team" className="hover:text-accent transition-colors">Frisørene</a>
+              </li>
+              <li>
+                <a href="#salonger" className="hover:text-accent transition-colors">Salongene</a>
+              </li>
+              <li>
+                <a href="#kunnskap" className="hover:text-accent transition-colors">Hårkunnskap</a>
+              </li>
             </ul>
           </div>
 
-          {/* Location 1: Moholt */}
+          {/* Col 3: Solsiden Contact & Hours */}
           <div>
-            <h4 className="font-display font-bold uppercase text-white text-xs tracking-widest mb-4">
-              {String(t("nav.moholt"))}
-            </h4>
-            <div className="space-y-2 text-xs font-body text-text-light/70">
-              <p>{String(t("footer.moholt_addr"))}</p>
-              <p>{String(t("footer.phone_label"))} <a href="tel:+4773931100" className="hover:text-copper">+47 73 93 11 00</a></p>
-              <p>{String(t("footer.email_moholt"))}</p>
-              <p className="pt-2 text-[11px] text-copper-light font-display">{String(t("footer.hours_moholt"))}</p>
+            <div className="font-display text-sm font-bold uppercase tracking-wider text-white mb-4">
+              Solsiden Barbershop
+            </div>
+            <div className="space-y-1.5 text-xs text-text-light-muted leading-relaxed">
+              <p className="text-white font-medium">Innherredsveien / Solsiden</p>
+              <p>7014 Trondheim</p>
+              <p className="pt-1">
+                Tlf:{" "}
+                <a href="tel:+4773510020" className="text-white hover:text-accent font-bold tabular-nums">
+                  73 51 00 20
+                </a>
+              </p>
+              <p className="text-[11px] pt-2 border-t border-border-dark/40">
+                Man–Fre: 09:00–19:00<br />Lør: 09:00–16:00<br />Søn: Stengt
+              </p>
             </div>
           </div>
 
-          {/* Location 2: Solsiden */}
+          {/* Col 4: Moholt Contact & Hours */}
           <div>
-            <h4 className="font-display font-bold uppercase text-white text-xs tracking-widest mb-4">
-              {String(t("nav.solsiden"))}
-            </h4>
-            <div className="space-y-2 text-xs font-body text-text-light/70">
-              <p>{String(t("footer.solsiden_addr"))}</p>
-              <p>{String(t("footer.phone_label"))} <a href="tel:+4773931101" className="hover:text-copper">+47 73 93 11 01</a></p>
-              <p>{String(t("footer.email_solsiden"))}</p>
-              <p className="pt-2 text-[11px] text-copper-light font-display">{String(t("footer.hours_solsiden"))}</p>
+            <div className="font-display text-sm font-bold uppercase tracking-wider text-white mb-4">
+              Moholt Hovedsalong
+            </div>
+            <div className="space-y-1.5 text-xs text-text-light-muted leading-relaxed">
+              <p className="text-white font-medium">Brøsetvegen / Moholt</p>
+              <p>7050 Trondheim</p>
+              <p className="pt-1">
+                Tlf:{" "}
+                <a href="tel:+4773938800" className="text-white hover:text-accent font-bold tabular-nums">
+                  73 93 88 00
+                </a>
+              </p>
+              <p className="text-[11px] pt-2 border-t border-border-dark/40">
+                Man–Fre: 09:00–19:00<br />Lør: 09:00–16:00<br />Søn: Stengt
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Giant Full-Width Brand Wordmark Bleeding Off Bottom Edge */}
-        <div className="pt-8 text-center overflow-hidden pointer-events-none select-none">
-          <span className="font-display font-bold text-5xl sm:text-8xl lg:text-[10rem] uppercase tracking-widest text-copper/10 block leading-none whitespace-nowrap">
-            {String(t("footer.giant_wordmark"))}
-          </span>
+        {/* Oversized Brand Wordmark Bleeding off the edge */}
+        <div className="border-t border-border-dark/60 pt-6 pb-2 text-center overflow-hidden">
+          <div className="font-display text-4xl sm:text-7xl lg:text-[8.5rem] font-bold tracking-tighter text-white/[0.07] uppercase select-none pointer-events-none whitespace-nowrap leading-none">
+            {String(t("footer.wordmark"))}
+          </div>
         </div>
 
-        {/* Legal Row & Developer Credit */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-body text-text-light/50 gap-4 border-t border-copper/10">
+        {/* Legal Row + Mandatory Studio Credit */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-light-muted pt-4 border-t border-border-dark/40">
+          <div>{String(t("footer.legalNotice"))}</div>
           <div>
-            {String(t("footer.copyright"))} {String(t("footer.rights"))}
-          </div>
-
-          <div>
+            {String(t("footer.devCreditPrefix"))}{" "}
             <a
               href="https://makarich.framer.website"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-copper transition-colors underline underline-offset-4"
+              className="text-accent hover:underline font-semibold"
             >
-              {String(t("footer.dev_credit"))}
+              {String(t("footer.devCreditName"))}
             </a>
           </div>
         </div>
-
       </div>
+      <div className="mt-4 text-center text-xs opacity-70"><a href="/privacy" className="underline hover:no-underline">Personvernerklæring</a></div>
     </footer>
   );
 }
